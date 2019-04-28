@@ -3,9 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "nanoid": "^2.0.1",
+    "npm-audit-resolver": "^1.5.0",
     "react": "^16.8.6",
+    "react-beautiful-dnd": "^11.0.1",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-redux": "^7.0.2",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8",
+    "react-smooth-dnd": "^0.11.0",
+    "react-sortablejs": "^1.5.1",
+    "redux": "^4.0.1",
+    "sortablejs": "^1.6.1"
   },
   "scripts": {
     "start": "react-scripts start",
