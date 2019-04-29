@@ -41,7 +41,6 @@ class List extends Component {
               className='task_wrapper'
               ref={provided.innerRef}
               {...provided.droppableProps}
-              isDraggingOver={snapshot.isDraggingOver}
             >
               {this.props.tasks.map((task, index) => (
                 <Task onClick={() => this.props.taskChecked(task.id)} key={task.id} task={task} index={index} />

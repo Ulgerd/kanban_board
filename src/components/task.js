@@ -5,7 +5,6 @@ import { Draggable } from 'react-beautiful-dnd'
 class Task extends Component {
 
   render() {
-    console.log(this.props);
     return (
       <Draggable
         draggableId={this.props.task.id}
@@ -17,7 +16,6 @@ class Task extends Component {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            isDragging={snapshot.isDragging}
             onClick={this.props.onClick}
           >
             {this.props.task.content}
