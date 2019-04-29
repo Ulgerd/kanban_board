@@ -25,3 +25,10 @@ export function updateListsAfterDragEnd(newLists) {
     newLists
   }
 }
+
+export function taskChecked(taskID) {
+  return {
+    type: 'TASK_CHECKED',
+    taskID
+  }
+}

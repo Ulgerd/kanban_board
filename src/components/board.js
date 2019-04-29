@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { DragDropContext } from 'react-beautiful-dnd'
 import { connect } from 'react-redux';
-import { toggleAddListMenu, createNewList, createNewTask, updateListsAfterDragEnd } from '../actions/boardActions'
+import { toggleAddListMenu, createNewList, createNewTask, updateListsAfterDragEnd, taskChecked } from '../actions/boardActions'
 import nanoid from 'nanoid';
 
 import List from './list';
@@ -80,31 +80,20 @@ class Board extends Component {
   }
 
   onEnter = (e) => {
-    if (e.key === 'Enter') {
-      this.props.createNewList(this.state.input);
+    if (e.key === 'Enter' && this.state.input !== '') {
+      this.createNewList();
     }
   }
 
-  onNoteCheck = (noteID, listID) => {
-    let {lists} = this.state;
+  createNewList = () => {
     this.setState({
-      lists: {
-        ...lists,
-        [listID]: {
-          ...lists[listID],
-          childs: {
-            ...lists[listID].childs,
-            [noteID]: {
-              ...lists[listID].childs[noteID],
-              checked: !lists[listID].childs[noteID].checked
-            }
-          }
-        }
-      }
+      input: ''
     })
+    this.props.createNewList(this.state.input);
   }
 
   render() {
+    console.log(this.state.input);
     let {name} = this.props.board;
     return (
       <div className='board'>
@@ -120,7 +109,14 @@ class Board extends Component {
           )
 
           return (
-            <List key={listID} id={listID} name={list.name} tasks={tasks} onCreateNewChild={this.props.createNewTask} onCheck= {this.onNoteCheck} />
+            <List
+              key={listID}
+              id={listID}
+              name={list.name}
+              tasks={tasks}
+              onCreateNewChild={this.props.createNewTask}
+              taskChecked={this.props.taskChecked}
+            />
           )
         })}
       </DragDropContext>
@@ -135,7 +131,13 @@ class Board extends Component {
                 onChange={this.onInputChange}
                 onKeyPress={this.onEnter}
                 placeholder="List name, a.g. 'Monday'"/>
-              <button className='create_list_button' onClick={() => this.props.createNewList(this.state.input)} disabled={!this.state.input}>Create</button>
+              <button
+                className='create_list_button'
+                onClick={this.createNewList}
+                disabled={!this.state.input}
+              >
+                Create
+              </button>
             </div>
           : <div onClick={this.props.toggleAddListMenu} className='add_a_list'>Add a list...</div>
       }
@@ -145,6 +147,7 @@ class Board extends Component {
 
 // эта хрень возвращает тупо стейт
 const mapStateToProps = store => {
+  console.log(store.board);
   return {
     addingList: store.board.addingList,
     input: store.board.input,
@@ -158,7 +161,8 @@ const mapDispatchToProps = dispatch => ({
     toggleAddListMenu: () => dispatch(toggleAddListMenu() ),
     createNewList: (input) => dispatch(createNewList(input)),
     createNewTask: (id, input) => dispatch(createNewTask(id, input)),
-    updateListsAfterDragEnd: (newLists) => dispatch(updateListsAfterDragEnd(newLists))
+    updateListsAfterDragEnd: (newLists) => dispatch(updateListsAfterDragEnd(newLists)),
+    taskChecked: (id) => dispatch(taskChecked(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (Board);

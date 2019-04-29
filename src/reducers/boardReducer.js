@@ -64,6 +64,25 @@ export function boardReducer(state = initialState, action) {
         }
       })
       return newState;
+
+      case 'TASK_CHECKED':
+      let stateWithNewTasks ={}
+        Object.keys(state.tasks).map(oneTask => {
+          if (oneTask === action.taskID) {
+            stateWithNewTasks = {
+              ...state,
+              tasks: {
+                ...state.tasks,
+                [oneTask]: {
+                  ...state.tasks[oneTask],
+                  checked: !state.tasks[oneTask].checked
+                }
+              },
+            }
+
+          }
+        })
+        return stateWithNewTasks;
     default:
       return state
   }

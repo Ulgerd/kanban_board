@@ -5,6 +5,7 @@ import { Draggable } from 'react-beautiful-dnd'
 class Task extends Component {
 
   render() {
+    console.log(this.props);
     return (
       <Draggable
         draggableId={this.props.task.id}
@@ -12,11 +13,12 @@ class Task extends Component {
       >
         {(provided, snapshot) => (
           <div
-            className = 'task'
+            className = {this.props.task.checked ? 'task_checked':'task'}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
+            onClick={this.props.onClick}
           >
             {this.props.task.content}
           </div>

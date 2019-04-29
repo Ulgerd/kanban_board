@@ -49,7 +49,6 @@ class App extends Component {
 
 // эта хрень возвращает тупо стейт
 const mapStateToProps = store => {
-  console.log(store.titlePage);
   return {
     creatingNewBoard: store.titlePage.creatingNewBoard,
     input: store.titlePage.input,

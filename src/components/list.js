@@ -32,7 +32,7 @@ class List extends Component {
       <div className='list'>
         <h3>{name}</h3>
         <input onChange= {this.onInputChildName} value={this.state.input} onKeyPress={this.onEnter}/>
-        <button onClick={this.createNewChild}>Submit</button>
+        <button onClick={this.createNewChild} disabled={!this.state.input}>Submit</button>
 
       <div>
         <Droppable droppableId={this.props.id} type="TASK">
@@ -44,7 +44,7 @@ class List extends Component {
               isDraggingOver={snapshot.isDraggingOver}
             >
               {this.props.tasks.map((task, index) => (
-                <Task key={task.id} task={task} index={index} />
+                <Task onClick={() => this.props.taskChecked(task.id)} key={task.id} task={task} index={index} />
               ))}
               {provided.placeholder}
             </div>
