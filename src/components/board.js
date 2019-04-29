@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
 import { DragDropContext } from 'react-beautiful-dnd'
 import { connect } from 'react-redux';
-import { toggleAddListMenu } from '../actions/boardActions'
+import { toggleAddListMenu, createNewList, createNewTask, updateListsAfterDragEnd } from '../actions/boardActions'
 import nanoid from 'nanoid';
 
 import List from './list';
 
 class Board extends Component {
+
   state = {
-    addingList: false,
     input: '',
-    tasks: {},
-    lists: {},
-    listsOrder: []
+  }
+
+  onInputChange = (input) => {
+    this.setState({
+      input: input.target.value
+    })
   }
 
   onDragEnd = result => {
@@ -29,8 +32,8 @@ class Board extends Component {
       return
     }
 
-    const start = this.state.lists[source.droppableId]
-    const finish = this.state.lists[destination.droppableId]
+    const start = this.props.lists[source.droppableId]
+    const finish = this.props.lists[destination.droppableId]
 
     if (start === finish) {
       const newTaskIds = Array.from(start.taskIDs)
@@ -42,15 +45,13 @@ class Board extends Component {
         taskIDs: newTaskIds
       }
 
+      //dispatch
       const newState = {
-        ...this.state,
-        lists: {
-          ...this.state.lists,
-          [source.droppableId]: newList
-        }
+        ...this.props.lists,
+        [source.droppableId]: newList
       }
 
-      this.setState(newState)
+      this.props.updateListsAfterDragEnd(newState)
       return
     }
 
@@ -69,75 +70,19 @@ class Board extends Component {
       taskIDs: finishTaskIds
     }
 
+    //dispatch
     const newState = {
-      ...this.state,
-      lists: {
-        ...this.state.lists,
+        ...this.props.lists,
         [source.droppableId]: newStart,
         [destination.droppableId]: newFinish
       }
-    }
-    this.setState(newState)
-  }
-
-  onInputChange = (input) => {
-    this.setState({input: input.target.value})
-  }
-
-  openAddlistMenu = () => {
-    this.setState({addingList: true})
-  }
-
-  addList = () => {
-    let id = nanoid(4);
-    this.setState({
-      addingList: false,
-      input: '',
-      listsOrder: [...this.state.listsOrder, id],
-      lists: {
-        ...this.state.lists,
-        [id]: {
-          name: this.state.input,
-          taskIDs: []
-        }
-      }
-    })
+    this.props.updateListsAfterDragEnd(newState)
   }
 
   onEnter = (e) => {
     if (e.key === 'Enter') {
-      this.addList();
+      this.props.createNewList(this.state.input);
     }
-  }
-
-  createNewTask = (id, input) => {
-    let {lists} = this.state;
-    let taskId = nanoid(4);
-    Object.keys(lists).map(oneList => {
-      if (oneList === id) {
-        this.setState({
-          tasks: {
-            ...this.state.tasks,
-            [taskId]: {
-              id: taskId,
-              content: input,
-              checked: false
-            }
-          },
-          lists: {
-            ...lists,
-            [oneList]: {
-              ...this.state.lists[oneList],
-              taskIDs: [
-                ...this.state.lists[oneList].taskIDs,
-                taskId
-              ]
-            }
-          }
-        })
-      }
-      return null;
-    })
   }
 
   onNoteCheck = (noteID, listID) => {
@@ -168,14 +113,14 @@ class Board extends Component {
       <div className='boardName shadow'>{name}</div>
 
       <DragDropContext onDragEnd={this.onDragEnd}>
-        {this.state.listsOrder.map(listID => {
-          const list = this.state.lists[listID]
+        {this.props.listsOrder.map(listID => {
+          const list = this.props.lists[listID]
           const tasks = list.taskIDs.map(
-            taskId => this.state.tasks[taskId]
+            taskId => this.props.tasks[taskId]
           )
 
           return (
-            <List key={listID} id={listID} name={list.name} tasks={tasks} onCreateNewChild={this.createNewTask} onCheck= {this.onNoteCheck} />
+            <List key={listID} id={listID} name={list.name} tasks={tasks} onCreateNewChild={this.props.createNewTask} onCheck= {this.onNoteCheck} />
           )
         })}
       </DragDropContext>
@@ -183,10 +128,16 @@ class Board extends Component {
       {
         this.props.addingList
           ? <div className='create_a_list'>
-              <input className='create_list_input' type='text' name='addAList' onChange={this.onInputChange} onKeyPress={this.onEnter} placeholder="List name, a.g. 'Monday'"/>
-              <button className='create_list_button' onClick={this.addList} disabled={!this.state.input}>Create</button>
+              <input
+                className='create_list_input'
+                type='text'
+                name='addAList'
+                onChange={this.onInputChange}
+                onKeyPress={this.onEnter}
+                placeholder="List name, a.g. 'Monday'"/>
+              <button className='create_list_button' onClick={() => this.props.createNewList(this.state.input)} disabled={!this.state.input}>Create</button>
             </div>
-          : <div onClick={toggleAddListMenu} className='add_a_list'>Add a list...</div>
+          : <div onClick={this.props.toggleAddListMenu} className='add_a_list'>Add a list...</div>
       }
     </div>)
   }
@@ -194,18 +145,20 @@ class Board extends Component {
 
 // эта хрень возвращает тупо стейт
 const mapStateToProps = store => {
-  console.log(store);
   return {
     addingList: store.board.addingList,
-    // input: store.input,
-    // boards: store.boards,
+    input: store.board.input,
+    listsOrder: store.board.listsOrder,
+    lists: store.board.lists,
+    tasks: store.board.tasks
   }
 }
 // эта хрень возвращает функции
 const mapDispatchToProps = dispatch => ({
     toggleAddListMenu: () => dispatch(toggleAddListMenu() ),
-    // inputChange: (input) => dispatch(inputChange(input.target.value)),
-    // createNewBoard: () => dispatch(createNewBoard()),
+    createNewList: (input) => dispatch(createNewList(input)),
+    createNewTask: (id, input) => dispatch(createNewTask(id, input)),
+    updateListsAfterDragEnd: (newLists) => dispatch(updateListsAfterDragEnd(newLists))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (Board);

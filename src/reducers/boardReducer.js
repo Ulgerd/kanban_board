@@ -2,7 +2,9 @@ import nanoid from 'nanoid';
 
 export const initialState = {
   addingList: false,
-  input: '',
+  tasks: {},
+  listsOrder: [],
+  lists: {},
 }
 
 export function boardReducer(state = initialState, action) {
@@ -12,25 +14,56 @@ export function boardReducer(state = initialState, action) {
         ...state,
         addingList: !state.addingList
       }
-    case 'INPUT_CHANGE':
+
+    case 'UPDATE_LISTS':
       return {
         ...state,
-        input: action.payload
+        lists: action.newLists
       }
-    case 'CREATE_NEW_BOARD':
+    case 'CREATE_NEW_LIST':
       let id = nanoid(4);
       return {
         ...state,
-        creatingNewBoard: false,
-        input: '',
-        boards: {
-            ...state.boards,
+        addingList: false,
+        listsOrder: [...state.listsOrder, id],
+        lists: {
+            ...state.lists,
             [id]: {
-              id: id,
-              name: state.input,
+              name: action.input,
+              taskIDs: []
             }
         },
       }
+    case 'CREATE_NEW_TASK':
+      let taskId = nanoid(4);
+      let newState = {};
+      Object.keys(state.lists).map(oneList => {
+        if (oneList === action.id) {
+          newState = {
+            ...state,
+            tasks: {
+              ...state.tasks,
+              [taskId]: {
+                id: taskId,
+                content: action.input,
+                checked: false
+              }
+            },
+            lists: {
+              ...state.lists,
+              [oneList]: {
+                ...state.lists[oneList],
+                taskIDs: [
+                  ...state.lists[oneList].taskIDs,
+                  taskId
+                ]
+              }
+            }
+          }
+
+        }
+      })
+      return newState;
     default:
       return state
   }
