@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { DragDropContext } from 'react-beautiful-dnd'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { connect } from 'react-redux';
-import { toggleAddListMenu, createNewList, createNewTask, updateListsAfterDragEnd, taskChecked } from '../actions/boardActions'
+import { toggleAddListMenu, createNewList, createNewTask, updateListsAfterDragEnd, taskChecked, updateListsAndTasksDragEnd } from '../actions/boardActions'
 import nanoid from 'nanoid';
 
 import List from './list';
@@ -32,9 +32,35 @@ class Board extends Component {
       return
     }
 
+    //Moving to trash
+    if (destination.droppableId === 'trash') {
+      let { lists, tasks } = this.props;
+      let toDelete = lists[source.droppableId].taskIDs.indexOf(draggableId);
+
+      let from = lists[source.droppableId].taskIDs.slice(0, toDelete);
+      let to = lists[source.droppableId].taskIDs.slice(toDelete+1, lists[source.droppableId].taskIDs.length);
+      let newLists = {
+        ...lists,
+        [source.droppableId]: {
+          ...lists[source.droppableId],
+          taskIDs: [
+          ...from, ...to
+          ]
+        }
+      };
+      let newTasks = {
+        ...tasks
+      };
+      delete newTasks[draggableId];
+
+      this.props.updateListsAndTasksDragEnd(newLists, newTasks)
+      return
+    }
+
     const start = this.props.lists[source.droppableId]
     const finish = this.props.lists[destination.droppableId]
 
+    //Moving in one list
     if (start === finish) {
       const newTaskIds = Array.from(start.taskIDs)
       newTaskIds.splice(source.index, 1)
@@ -45,7 +71,6 @@ class Board extends Component {
         taskIDs: newTaskIds
       }
 
-      //dispatch
       const newState = {
         ...this.props.lists,
         [source.droppableId]: newList
@@ -70,13 +95,13 @@ class Board extends Component {
       taskIDs: finishTaskIds
     }
 
-    //dispatch
     const newState = {
         ...this.props.lists,
         [source.droppableId]: newStart,
         [destination.droppableId]: newFinish
       }
     this.props.updateListsAfterDragEnd(newState)
+
   }
 
   onEnter = (e) => {
@@ -93,7 +118,6 @@ class Board extends Component {
   }
 
   render() {
-    console.log(this.state.input);
     let {name} = this.props.board;
     return (
       <div className='board'>
@@ -101,7 +125,20 @@ class Board extends Component {
 
       <div className='boardName shadow'>{name}</div>
 
+
       <DragDropContext onDragEnd={this.onDragEnd}>
+        <Droppable droppableId={'trash'} type="TASK">
+          {(provided, snapshot) => (
+            <div
+              className='trash'
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+            >
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+
         {this.props.listsOrder.map(listID => {
           const list = this.props.lists[listID]
           const tasks = list.taskIDs.map(
@@ -147,7 +184,6 @@ class Board extends Component {
 
 // эта хрень возвращает тупо стейт
 const mapStateToProps = store => {
-  console.log(store.board);
   return {
     addingList: store.board.addingList,
     input: store.board.input,
@@ -162,6 +198,7 @@ const mapDispatchToProps = dispatch => ({
     createNewList: (input) => dispatch(createNewList(input)),
     createNewTask: (id, input) => dispatch(createNewTask(id, input)),
     updateListsAfterDragEnd: (newLists) => dispatch(updateListsAfterDragEnd(newLists)),
+    updateListsAndTasksDragEnd: (newLists, newTasks) => dispatch(updateListsAndTasksDragEnd(newLists, newTasks)),
     taskChecked: (id) => dispatch(taskChecked(id)),
 })
 

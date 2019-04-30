@@ -188,8 +188,22 @@
 .boardName {
   min-height: 100px;
   max-width: 300px;
-  grid-column: 1/4;
+  grid-column: 1/2;
   background-color: lightgreen;
+  color: white;
+  position: relative;
+  border: 1px solid black;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trash {
+  min-height: 100px;
+  max-width: 300px;
+  grid-column: 3/4;
+  background-color: red;
   color: white;
   position: relative;
   border: 1px solid black;

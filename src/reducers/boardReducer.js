@@ -20,6 +20,15 @@ export function boardReducer(state = initialState, action) {
         ...state,
         lists: action.newLists
       }
+
+    case 'UPDATE_LISTS_AND_TASKS':
+    console.log(action.newLists);
+      return {
+        ...state,
+        lists: action.newLists,
+        tasks: action.newTasks,
+      }
+
     case 'CREATE_NEW_LIST':
       let id = nanoid(4);
       return {

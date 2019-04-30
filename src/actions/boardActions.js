@@ -32,3 +32,11 @@ export function taskChecked(taskID) {
     taskID
   }
 }
+
+export function updateListsAndTasksDragEnd(newLists, newTasks) {
+  return {
+    type: 'UPDATE_LISTS_AND_TASKS',
+    newLists,
+    newTasks
+  }
+}
