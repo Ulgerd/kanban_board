@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, NavLink} from 'react-router-dom';
+import Header from './header.js';
 import Icons from '../icons/icons.svg';
 
 
@@ -16,19 +17,7 @@ class TitlePage extends Component {
     } = this.props;
     return (
       <div  className='main_wrapper'>
-        <div className='header'>
-          <div
-            className = 'XButton'
-          >
-            <svg
-              fill='blue'
-              width='32'
-              height="25"
-            >
-            <use xlinkHref={`${Icons}#home`} />
-            </svg>
-         </div>
-        </div>
+        <Header />
         <div className='create_new_board_wrapper'>
           {
             creatingNewBoard

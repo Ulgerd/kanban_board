@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { connect } from 'react-redux';
 import { toggleAddListMenu, createNewList, createNewTask, updateListsAfterDragEnd, taskChecked, updateListsAndTasksDragEnd, deleteList } from '../actions/boardActions'
-import nanoid from 'nanoid';
+import Header from './header.js';
 import Icons from '../icons/icons.svg';
 
 
@@ -124,7 +124,7 @@ class Board extends Component {
     console.log(this.props);
     return (
       <div className='board'>
-      <div className='header'>header</div>
+      <Header />
 
       <div className='boardName shadow'>{name}</div>
 
