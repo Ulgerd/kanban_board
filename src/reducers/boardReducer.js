@@ -15,6 +15,23 @@ export function boardReducer(state = initialState, action) {
         addingList: !state.addingList
       }
 
+    case 'DELETE_LIST':
+      let newListsOrder = [
+        ...state.listsOrder
+      ]
+      let toDelete = newListsOrder.indexOf(action.listID);
+      let from = newListsOrder.slice(0, toDelete);
+      let to = newListsOrder.slice(toDelete+1, newListsOrder.length)
+      let newLists = {
+        ...state.lists
+      };
+      delete newLists[action.listID];
+      return {
+        ...state,
+        lists: newLists,
+        listsOrder: [...from, ...to],
+      }
+
     case 'UPDATE_LISTS':
       return {
         ...state,
@@ -22,7 +39,6 @@ export function boardReducer(state = initialState, action) {
       }
 
     case 'UPDATE_LISTS_AND_TASKS':
-    console.log(action.newLists);
       return {
         ...state,
         lists: action.newLists,

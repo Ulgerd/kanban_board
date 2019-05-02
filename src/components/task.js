@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import { Draggable } from 'react-beautiful-dnd'
 
+function getStyle(style, snapshot) {
+  if (!snapshot.isDropAnimating) {
+    return style;
+  }
+  return {
+    ...style,
+    // cannot be 0, but make it super tiny
+    transitionDuration: `0.001s`,
+  };
+}
 
 class Task extends Component {
 
@@ -17,6 +27,7 @@ class Task extends Component {
             {...provided.dragHandleProps}
             ref={provided.innerRef}
             onClick={this.props.onClick}
+            style={getStyle(provided.draggableProps.style, snapshot)}
           >
             {this.props.task.content}
           </div>

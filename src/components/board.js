@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { connect } from 'react-redux';
-import { toggleAddListMenu, createNewList, createNewTask, updateListsAfterDragEnd, taskChecked, updateListsAndTasksDragEnd } from '../actions/boardActions'
+import { toggleAddListMenu, createNewList, createNewTask, updateListsAfterDragEnd, taskChecked, updateListsAndTasksDragEnd, deleteList } from '../actions/boardActions'
 import nanoid from 'nanoid';
+import Icons from '../icons/icons.svg';
+
 
 import List from './list';
 
@@ -119,6 +121,7 @@ class Board extends Component {
 
   render() {
     let {name} = this.props.board;
+    console.log(this.props);
     return (
       <div className='board'>
       <div className='header'>header</div>
@@ -130,12 +133,17 @@ class Board extends Component {
         <Droppable droppableId={'trash'} type="TASK">
           {(provided, snapshot) => (
             <div
-              className='trash'
+              className = {snapshot.isDraggingOver ? 'XButton trash': 'XButton trash_on_drag'}
               ref={provided.innerRef}
-              {...provided.droppableProps}
             >
-              {provided.placeholder}
-            </div>
+              <svg
+                fill={snapshot.isDraggingOver ? 'blue': 'red'}
+                width='32'
+                height="25"
+              >
+                <use xlinkHref={`${Icons}#trash`} />
+              </svg>
+           </div>
           )}
         </Droppable>
 
@@ -153,6 +161,7 @@ class Board extends Component {
               tasks={tasks}
               onCreateNewChild={this.props.createNewTask}
               taskChecked={this.props.taskChecked}
+              deleteList={this.props.deleteList}
             />
           )
         })}
@@ -200,6 +209,7 @@ const mapDispatchToProps = dispatch => ({
     updateListsAfterDragEnd: (newLists) => dispatch(updateListsAfterDragEnd(newLists)),
     updateListsAndTasksDragEnd: (newLists, newTasks) => dispatch(updateListsAndTasksDragEnd(newLists, newTasks)),
     taskChecked: (id) => dispatch(taskChecked(id)),
+    deleteList: (id) => dispatch(deleteList(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (Board);

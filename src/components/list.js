@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Droppable } from 'react-beautiful-dnd'
 import nanoid from 'nanoid';
 import Task from './task';
+import Icons from '../icons/icons.svg';
 
 
 class List extends Component {
@@ -31,6 +32,18 @@ class List extends Component {
     return (
       <div className='list'>
         <h3>{name}</h3>
+        <div
+          className = 'XButton'
+          onClick={() => { if (window.confirm('Are you sure you want to delete this list?')) this.props.deleteList(this.props.id) }}
+       >
+         <svg
+           fill='black'
+           width='25'
+           height="25"
+         >
+           <use xlinkHref={`${Icons}#close`} />
+         </svg>
+       </div>
         <input onChange= {this.onInputChildName} value={this.state.input} onKeyPress={this.onEnter}/>
         <button onClick={this.createNewChild} disabled={!this.state.input}>Submit</button>
 

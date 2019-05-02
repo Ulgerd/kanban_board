@@ -16,7 +16,19 @@ class TitlePage extends Component {
     } = this.props;
     return (
       <div  className='main_wrapper'>
-        <div className='header'>header</div>
+        <div className='header'>
+          <div
+            className = 'XButton'
+          >
+            <svg
+              fill='blue'
+              width='32'
+              height="25"
+            >
+            <use xlinkHref={`${Icons}#home`} />
+            </svg>
+         </div>
+        </div>
         <div className='create_new_board_wrapper'>
           {
             creatingNewBoard

@@ -40,3 +40,10 @@ export function updateListsAndTasksDragEnd(newLists, newTasks) {
     newTasks
   }
 }
+
+export function deleteList(listID) {
+  return {
+    type: 'DELETE_LIST',
+    listID
+  }
+}

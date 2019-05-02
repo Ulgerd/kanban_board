@@ -213,6 +213,20 @@
   align-items: center;
 }
 
+.trash_on_drag {
+  min-height: 100px;
+  max-width: 300px;
+  grid-column: 3/4;
+  background-color: white;
+  color: white;
+  position: relative;
+  border: 1px solid black;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .create_a_list {
   border-radius: 6px;
   border: 1px solid black;
