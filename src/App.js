@@ -21,12 +21,8 @@ class App extends Component {
               exact path='/'
               render={ ({ match }) =>
                 <TitlePage
-                  toggleNewBoardMenu = {this.props.toggleNewBoardMenu}
-                  creatingNewBoard = {this.props.creatingNewBoard}
-                  onInputChange = {this.props.inputChange}
                   createNewBoard = {this.props.createNewBoard}
                   boards = {this.props.boards}
-                  input = {this.props.input}
                 />
               }
             />
@@ -47,19 +43,14 @@ class App extends Component {
   }
 }
 
-// эта хрень возвращает тупо стейт
 const mapStateToProps = store => {
   return {
-    creatingNewBoard: store.titlePage.creatingNewBoard,
-    input: store.titlePage.input,
     boards: store.titlePage.boards,
   }
 }
-// эта хрень возвращает функции
+
 const mapDispatchToProps = dispatch => ({
-    toggleNewBoardMenu: () => dispatch(toggleNewBoardMenu() ),
-    inputChange: (input) => dispatch(inputChange(input.target.value)),
-    createNewBoard: () => dispatch(createNewBoard()),
+    createNewBoard: (input) => dispatch(createNewBoard(input)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (App);

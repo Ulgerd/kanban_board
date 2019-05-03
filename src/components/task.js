@@ -22,7 +22,7 @@ class Task extends Component {
       >
         {(provided, snapshot) => (
           <div
-            className = {this.props.task.checked ? 'task_checked':'task'}
+            className = {this.props.task.checked ? 'task _checked':'task'}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}

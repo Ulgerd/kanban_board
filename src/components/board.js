@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { connect } from 'react-redux';
+import ReactTooltip from 'react-tooltip';
 import { toggleAddListMenu, createNewList, createNewTask, updateListsAfterDragEnd, taskChecked, updateListsAndTasksDragEnd, deleteList } from '../actions/boardActions'
 import Header from './header.js';
 import Icons from '../icons/icons.svg';
@@ -126,22 +127,23 @@ class Board extends Component {
       <div className='board'>
       <Header />
 
-      <div className='boardName shadow'>{name}</div>
-
+      <div className='boardName'>{name}</div>
 
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId={'trash'} type="TASK">
           {(provided, snapshot) => (
             <div
-              className = {snapshot.isDraggingOver ? 'XButton trash': 'XButton trash_on_drag'}
+              className = 'trash'
               ref={provided.innerRef}
+              data-tip data-for='trash'
             >
               <svg
-                fill={snapshot.isDraggingOver ? 'blue': 'red'}
-                width='32'
-                height="25"
+                fill={snapshot.isDraggingOver ? 'blue': 'white'}
+                width='34'
+                height="40"
               >
                 <use xlinkHref={`${Icons}#trash`} />
+                {provided.placeholder}
               </svg>
            </div>
           )}
@@ -178,30 +180,31 @@ class Board extends Component {
                 onKeyPress={this.onEnter}
                 placeholder="List name, a.g. 'Monday'"/>
               <button
-                className='create_list_button'
+                className='create_list_button no_select'
                 onClick={this.createNewList}
                 disabled={!this.state.input}
               >
                 Create
               </button>
             </div>
-          : <div onClick={this.props.toggleAddListMenu} className='add_a_list'>Add a list...</div>
+          : <div onClick={this.props.toggleAddListMenu} className='add_a_list no_select'>Add a list...</div>
       }
+      <ReactTooltip id='trash'>
+        <span>You can throw your tasks here</span>
+      </ReactTooltip>
     </div>)
   }
 }
 
-// эта хрень возвращает тупо стейт
 const mapStateToProps = store => {
   return {
     addingList: store.board.addingList,
-    input: store.board.input,
     listsOrder: store.board.listsOrder,
     lists: store.board.lists,
     tasks: store.board.tasks
   }
 }
-// эта хрень возвращает функции
+
 const mapDispatchToProps = dispatch => ({
     toggleAddListMenu: () => dispatch(toggleAddListMenu() ),
     createNewList: (input) => dispatch(createNewList(input)),

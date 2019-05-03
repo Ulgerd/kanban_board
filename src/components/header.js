@@ -8,12 +8,11 @@ export default class Header extends Component {
     return (<div className='header'>
       <div className='XButton'>
         <NavLink to={`/`}>
-          <svg fill='blue' width='32' height="25">
+          <svg fill='blue' width='100' height="65">
             <use xlinkHref={`${Icons}#home`}/>
           </svg>
         </NavLink>
       </div>
     </div>)
   }
-
 }
