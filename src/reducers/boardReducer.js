@@ -5,6 +5,7 @@ export const initialState = {
   tasks: {},
   listsOrder: [],
   lists: {},
+  boardLists: {}
 }
 
 export function boardReducer(state = initialState, action) {
@@ -16,12 +17,12 @@ export function boardReducer(state = initialState, action) {
       }
 
     case 'DELETE_LIST':
-      let newListsOrder = [
-        ...state.listsOrder
+      let newBoardLists = [
+        ...state.boardLists[action.boardID]
       ]
-      let toDelete = newListsOrder.indexOf(action.listID);
-      let from = newListsOrder.slice(0, toDelete);
-      let to = newListsOrder.slice(toDelete+1, newListsOrder.length)
+      let toDelete = newBoardLists.indexOf(action.listID);
+      let from = newBoardLists.slice(0, toDelete);
+      let to = newBoardLists.slice(toDelete+1, newBoardLists.length)
       let newLists = {
         ...state.lists
       };
@@ -29,7 +30,7 @@ export function boardReducer(state = initialState, action) {
       return {
         ...state,
         lists: newLists,
-        listsOrder: [...from, ...to],
+        boardLists: [...from, ...to],
       }
 
     case 'UPDATE_LISTS':
@@ -47,10 +48,15 @@ export function boardReducer(state = initialState, action) {
 
     case 'CREATE_NEW_LIST':
       let id = nanoid(4);
+      let boardLists = (state.boardLists[action.boardID] === undefined) ?
+      [id] : [...state.boardLists[action.boardID], id];
+
       return {
         ...state,
         addingList: false,
-        listsOrder: [...state.listsOrder, id],
+        boardLists: { ...state.boardLists,
+          [action.boardID]: boardLists
+        },
         lists: {
             ...state.lists,
             [id]: {

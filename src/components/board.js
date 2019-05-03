@@ -117,12 +117,13 @@ class Board extends Component {
     this.setState({
       input: ''
     })
-    this.props.createNewList(this.state.input);
+    this.props.createNewList(this.state.input, this.props.board.id);
   }
 
   render() {
     let {name} = this.props.board;
-    console.log(this.props);
+    let currentLists = (this.props.boardLists[this.props.board.id] === undefined) ? [] :
+     this.props.boardLists[this.props.board.id];
     return (
       <div className='board'>
       <Header />
@@ -149,7 +150,7 @@ class Board extends Component {
           )}
         </Droppable>
 
-        {this.props.listsOrder.map(listID => {
+        {currentLists.map(listID => {
           const list = this.props.lists[listID]
           const tasks = list.taskIDs.map(
             taskId => this.props.tasks[taskId]
@@ -163,7 +164,7 @@ class Board extends Component {
               tasks={tasks}
               onCreateNewChild={this.props.createNewTask}
               taskChecked={this.props.taskChecked}
-              deleteList={this.props.deleteList}
+              deleteList={() => this.props.deleteList(listID, this.props.board.id)}
             />
           )
         })}
@@ -199,20 +200,20 @@ class Board extends Component {
 const mapStateToProps = store => {
   return {
     addingList: store.board.addingList,
-    listsOrder: store.board.listsOrder,
     lists: store.board.lists,
-    tasks: store.board.tasks
+    tasks: store.board.tasks,
+    boardLists: store.board.boardLists
   }
 }
 
 const mapDispatchToProps = dispatch => ({
     toggleAddListMenu: () => dispatch(toggleAddListMenu() ),
-    createNewList: (input) => dispatch(createNewList(input)),
+    createNewList: (input, boardID) => dispatch(createNewList(input, boardID)),
     createNewTask: (id, input) => dispatch(createNewTask(id, input)),
     updateListsAfterDragEnd: (newLists) => dispatch(updateListsAfterDragEnd(newLists)),
     updateListsAndTasksDragEnd: (newLists, newTasks) => dispatch(updateListsAndTasksDragEnd(newLists, newTasks)),
     taskChecked: (id) => dispatch(taskChecked(id)),
-    deleteList: (id) => dispatch(deleteList(id)),
+    deleteList: (id, boardID) => dispatch(deleteList(id, boardID)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (Board);

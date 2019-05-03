@@ -4,10 +4,11 @@ export function toggleAddListMenu() {
   }
 }
 
-export function createNewList(input) {
+export function createNewList(input, boardID) {
   return {
     type: 'CREATE_NEW_LIST',
-    input
+    input,
+    boardID
   }
 }
 
@@ -41,9 +42,10 @@ export function updateListsAndTasksDragEnd(newLists, newTasks) {
   }
 }
 
-export function deleteList(listID) {
+export function deleteList(listID, boardID) {
   return {
     type: 'DELETE_LIST',
-    listID
+    listID,
+    boardID
   }
 }
