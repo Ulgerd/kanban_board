@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { connect } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
-import { toggleAddListMenu, createNewList, createNewTask, updateListsAfterDragEnd, taskChecked, updateListsAndTasksDragEnd, deleteList } from '../actions/boardActions'
+import { createNewList, createNewTask, updateListsAfterDragEnd, taskChecked, updateListsAndTasksDragEnd, deleteList } from '../actions/boardActions'
 import Header from './header.js';
 import Icons from '../icons/icons.svg';
 
@@ -13,6 +13,7 @@ class Board extends Component {
 
   state = {
     input: '',
+    addingList: false,
   }
 
   onInputChange = (input) => {
@@ -107,6 +108,12 @@ class Board extends Component {
 
   }
 
+  toggleAddListMenu = () => {
+    this.setState({
+      addingList: !this.state.addingList
+    })
+  }
+
   onEnter = (e) => {
     if (e.key === 'Enter' && this.state.input !== '') {
       this.createNewList();
@@ -115,7 +122,8 @@ class Board extends Component {
 
   createNewList = () => {
     this.setState({
-      input: ''
+      input: '',
+      addingList: false
     })
     this.props.createNewList(this.state.input, this.props.board.id);
   }
@@ -171,7 +179,7 @@ class Board extends Component {
       </DragDropContext>
 
       {
-        this.props.addingList
+        this.state.addingList
           ? <div className='create_a_list'>
               <input
                 className='create_list_input'
@@ -188,7 +196,7 @@ class Board extends Component {
                 Create
               </button>
             </div>
-          : <div onClick={this.props.toggleAddListMenu} className='add_a_list no_select'>Add a list...</div>
+          : <div onClick={this.toggleAddListMenu} className='add_a_list no_select'>Add a list...</div>
       }
       <ReactTooltip id='trash'>
         <span>You can throw your tasks here</span>
@@ -207,7 +215,6 @@ const mapStateToProps = store => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    toggleAddListMenu: () => dispatch(toggleAddListMenu() ),
     createNewList: (input, boardID) => dispatch(createNewList(input, boardID)),
     createNewTask: (id, input) => dispatch(createNewTask(id, input)),
     updateListsAfterDragEnd: (newLists) => dispatch(updateListsAfterDragEnd(newLists)),

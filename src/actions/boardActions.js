@@ -1,9 +1,3 @@
-export function toggleAddListMenu() {
-  return {
-    type: 'ADDING_LIST',
-  }
-}
-
 export function createNewList(input, boardID) {
   return {
     type: 'CREATE_NEW_LIST',

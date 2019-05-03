@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { connect } from 'react-redux';
 //redux stuff
-import { toggleNewBoardMenu, inputChange, createNewBoard } from './actions/titlePageActions'
+import { createNewBoard } from './actions/titlePageActions'
 
 //components
 import TitlePage from './components/title_page';

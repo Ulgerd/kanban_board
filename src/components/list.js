@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Droppable} from 'react-beautiful-dnd'
-import nanoid from 'nanoid';
 import Task from './task';
 import Icons from '../icons/icons.svg';
 

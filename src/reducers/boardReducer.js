@@ -1,7 +1,6 @@
 import nanoid from 'nanoid';
 
 export const initialState = {
-  addingList: false,
   tasks: {},
   listsOrder: [],
   lists: {},
@@ -10,12 +9,6 @@ export const initialState = {
 
 export function boardReducer(state = initialState, action) {
   switch (action.type) {
-    case 'ADDING_LIST':
-      return {
-        ...state,
-        addingList: !state.addingList
-      }
-
     case 'DELETE_LIST':
       let newBoardLists = [
         ...state.boardLists[action.boardID]
@@ -48,8 +41,10 @@ export function boardReducer(state = initialState, action) {
 
     case 'CREATE_NEW_LIST':
       let id = nanoid(4);
-      let boardLists = (state.boardLists[action.boardID] === undefined) ?
-      [id] : [...state.boardLists[action.boardID], id];
+      let boardLists =
+        (state.boardLists[action.boardID] === undefined) ?
+          [id] :
+          [...state.boardLists[action.boardID], id];
 
       return {
         ...state,
@@ -93,7 +88,9 @@ export function boardReducer(state = initialState, action) {
           }
 
         }
-      })
+        return null;
+      }
+    )
       return newState;
 
       case 'TASK_CHECKED':
@@ -110,8 +107,8 @@ export function boardReducer(state = initialState, action) {
                 }
               },
             }
-
           }
+          return null;
         })
         return stateWithNewTasks;
     default:
