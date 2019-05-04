@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import Icons from '../icons/icons.svg';
 
 export default class Header extends Component {

@@ -225,6 +225,7 @@
   height: 100%;
   width: 100%;
   box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.2), 5px 5px 5px 0 rgba(0,0,0,0.2);
+  text-shadow: 4px 1px 2px rgba(150, 150, 150, 1);
 }
 
 .createNewBoard:hover {
@@ -243,6 +244,7 @@
   min-height: 150px;
   position: relative;
   box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.2), 5px 5px 5px 0 rgba(0,0,0,0.2);
+  text-shadow: 4px 1px 2px rgba(150, 150, 150, 1);
 }
 
 .board_elem :hover {
@@ -347,6 +349,7 @@
 .creatingNewBoard {
   height: 220px;
   box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.2), 5px 5px 5px 0 rgba(0,0,0,0.2);
+  text-shadow: 4px 1px 2px rgba(150, 150, 150, 1);
 }
 
 .creatingNewBoard_header {
@@ -447,6 +450,7 @@
   justify-content: center;
   align-items: center;
   box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
+  text-shadow: 4px 1px 2px rgba(150, 150, 150, 1);
 }
 
 .trash {
@@ -459,6 +463,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
+
 }
 
 .create_a_list {
@@ -481,6 +487,7 @@
   justify-content: center;
   align-items: center;
   box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.2), 5px 5px 5px 0 rgba(0,0,0,0.2);
+  text-shadow: 4px 1px 2px rgba(150, 150, 150, 1);
 }
 
 .add_a_list:active {
@@ -593,6 +600,7 @@
   margin-bottom: 0.3em;
   cursor: pointer;
   box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
+  overflow: hidden;
 }
 
 ._checked {

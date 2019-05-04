@@ -10,15 +10,12 @@ export const initialState = {
 export function boardReducer(state = initialState, action) {
   switch (action.type) {
     case 'DELETE_LIST':
-    console.log(action.listID);
-    console.log(action.boardID);
-    //смени имя
-      let newBoardLists = [
+      let currentBoardLists = [
         ...state.boardLists[action.boardID]
       ]
-      let toDelete = newBoardLists.indexOf(action.listID);
-      let from = newBoardLists.slice(0, toDelete);
-      let to = newBoardLists.slice(toDelete+1, newBoardLists.length)
+      let toDelete = currentBoardLists.indexOf(action.listID);
+      let from = currentBoardLists.slice(0, toDelete);
+      let to = currentBoardLists.slice(toDelete+1, currentBoardLists.length)
       let newLists = {
         ...state.lists
       };

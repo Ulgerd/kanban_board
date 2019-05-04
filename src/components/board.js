@@ -189,7 +189,9 @@ class Board extends Component {
                   name='addAList'
                   onChange={this.onInputChange}
                   onKeyPress={this.onEnter}
-                  placeholder="List name, a.g. 'Monday'"/>
+                  placeholder="List name, a.g. 'Monday'"
+                  maxLength="15"
+                />
                 <button
                   className='create_list_button no_select'
                   onClick={this.createNewList}
