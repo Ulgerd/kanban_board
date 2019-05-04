@@ -20,12 +20,13 @@ export function boardReducer(state = initialState, action) {
         ...state.lists
       };
       delete newLists[action.listID];
+
       return {
         ...state,
         lists: newLists,
         boardLists: {
           ...state.boardLists,
-        [action.boardID]: [...from, ...to]
+          [action.boardID]: [...from, ...to]
         }
       }
 
@@ -56,13 +57,14 @@ export function boardReducer(state = initialState, action) {
           [action.boardID]: boardLists
         },
         lists: {
-            ...state.lists,
-            [id]: {
-              name: action.input,
-              taskIDs: []
-            }
-        },
+          ...state.lists,
+          [id]: {
+            name: action.input,
+            taskIDs: []
+          }
+        }
       }
+
     case 'CREATE_NEW_TASK':
       let taskId = nanoid(4);
       let newState = {};
@@ -89,14 +91,12 @@ export function boardReducer(state = initialState, action) {
               }
             }
           }
-
         }
         return null;
-      }
-    )
+      })
       return newState;
 
-      case 'TASK_CHECKED':
+    case 'TASK_CHECKED':
       let stateWithNewTasks ={}
         Object.keys(state.tasks).map(oneTask => {
           if (oneTask === action.taskID) {
@@ -113,7 +113,8 @@ export function boardReducer(state = initialState, action) {
           }
           return null;
         })
-        return stateWithNewTasks;
+      return stateWithNewTasks;
+
     default:
       return state
   }

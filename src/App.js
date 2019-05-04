@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createNewBoard } from './actions/titlePageActions'
 import TitlePage from './components/title_page';
 import Board from './components/board';
-import './App.css';
+import './css/App.css';
 
 class App extends Component {
   render() {
@@ -33,7 +33,7 @@ class App extends Component {
                 />
               )
             }
-            
+
           </Switch>
         </div>
       </Router>
@@ -48,7 +48,7 @@ const mapStateToProps = store => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    createNewBoard: (input) => dispatch(createNewBoard(input)),
+    createNewBoard: (input, boardColor) => dispatch(createNewBoard(input, boardColor)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (App);

@@ -1,6 +1,7 @@
-export function createNewBoard(input) {
+export function createNewBoard(input, boardColor) {
   return {
     type: 'CREATE_NEW_BOARD',
-    input
+    input,
+    boardColor
   }
 }

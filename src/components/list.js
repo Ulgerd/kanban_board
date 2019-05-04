@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Droppable} from 'react-beautiful-dnd'
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import '../css/confirm.css'; // Import css
 import Task from './task';
 import Icons from '../icons/icons.svg';
 
@@ -8,8 +10,33 @@ class List extends Component {
     input: ''
   }
 
+  submit = () => {
+    confirmAlert({
+      title: 'List removal',
+      message: 'Are you sure you want to delete this list?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => this.props.deleteList(this.props.id, this.props.boardID)
+        },
+        {
+          label: 'No',
+        }
+      ]
+    })
+  };
+
+
   onInputChildName = (input) => {
-    this.setState({input: input.target.value})
+    this.setState({
+      input: input.target.value
+    })
+  }
+
+  onEnter = (e) => {
+    if (e.key === 'Enter' && this.state.input !== '') {
+      this.createNewChild();
+    }
   }
 
   createNewChild = () => {
@@ -19,23 +46,17 @@ class List extends Component {
     this.setState({input: ''})
   }
 
-  onEnter = (e) => {
-    if (e.key === 'Enter' && this.state.input !== '') {
-      this.createNewChild();
-    }
-  }
-
   render() {
-    let {name} = this.props;
+    let {name, id,tasks, taskChecked} = this.props;
     return (
       <div className = 'list_wrapper'>
 
         <div className='list'>
           <div className='list_header'>{name}</div>
-          <div className='listXButton' onClick={() => {
-              if (window.confirm('Are you sure you want to delete this list?'))
-                this.props.deleteList(this.props.id, this.props.boardID)
-            }}>
+          <div
+            className='listXButton'
+            onClick={this.submit}
+          >
             <svg fill='black' width='25' height="25">
               <use xlinkHref={`${Icons}#close`}/>
             </svg>
@@ -55,12 +76,25 @@ class List extends Component {
         </div>
 
         <div>
-          <Droppable droppableId={this.props.id} type="TASK">
+          <Droppable droppableId={id} type="TASK">
             {
-              (provided, snapshot) => (<div className='task_wrapper' ref={provided.innerRef} {...provided.droppableProps}>
-                {this.props.tasks.map((task, index) => (<Task onClick={() => this.props.taskChecked(task.id)} key={task.id} task={task} index={index}/>))}
-                {provided.placeholder}
-              </div>)
+              (provided, snapshot) => (
+                <div
+                  className='task_wrapper'
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                >
+                  {tasks.map((task, index) => (
+                    <Task
+                      onClick={() => taskChecked(task.id)}
+                      key={task.id}
+                      task={task}
+                      index={index}
+                    />
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )
             }
           </Droppable>
         </div>

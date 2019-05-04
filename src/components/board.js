@@ -2,12 +2,11 @@ import React, {Component} from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { connect } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
+
 import { createNewList, createNewTask, updateListsAfterDragEnd, taskChecked, updateListsAndTasksDragEnd, deleteList } from '../actions/boardActions'
 import Header from './header.js';
-import Icons from '../icons/icons.svg';
-
-
 import List from './list';
+import Icons from '../icons/icons.svg';
 
 class Board extends Component {
 
@@ -23,7 +22,7 @@ class Board extends Component {
   }
 
   onDragEnd = result => {
-    const { destination, source, draggableId } = result
+    let { destination, source, draggableId } = result;
 
     if (!destination) {
       return
@@ -36,9 +35,10 @@ class Board extends Component {
       return
     }
 
+    let { lists, tasks, updateListsAndTasksDragEnd, updateListsAfterDragEnd } = this.props;
+
     //Moving to trash
     if (destination.droppableId === 'trash') {
-      let { lists, tasks } = this.props;
       let toDelete = lists[source.droppableId].taskIDs.indexOf(draggableId);
 
       let from = lists[source.droppableId].taskIDs.slice(0, toDelete);
@@ -57,12 +57,12 @@ class Board extends Component {
       };
       delete newTasks[draggableId];
 
-      this.props.updateListsAndTasksDragEnd(newLists, newTasks)
+      updateListsAndTasksDragEnd(newLists, newTasks)
       return
     }
 
-    const start = this.props.lists[source.droppableId]
-    const finish = this.props.lists[destination.droppableId]
+    const start = lists[source.droppableId]
+    const finish = lists[destination.droppableId]
 
     //Moving in one list
     if (start === finish) {
@@ -76,11 +76,11 @@ class Board extends Component {
       }
 
       const newState = {
-        ...this.props.lists,
+        ...lists,
         [source.droppableId]: newList
       }
 
-      this.props.updateListsAfterDragEnd(newState)
+      updateListsAfterDragEnd(newState)
       return
     }
 
@@ -100,11 +100,11 @@ class Board extends Component {
     }
 
     const newState = {
-        ...this.props.lists,
+        ...lists,
         [source.droppableId]: newStart,
         [destination.droppableId]: newFinish
       }
-    this.props.updateListsAfterDragEnd(newState)
+    updateListsAfterDragEnd(newState)
 
   }
 
@@ -121,20 +121,22 @@ class Board extends Component {
   }
 
   createNewList = () => {
+    let {createNewList, board} = this.props;
     this.setState({
       input: '',
       addingList: false
     })
-    this.props.createNewList(this.state.input, this.props.board.id);
+    createNewList(this.state.input, board.id);
   }
 
   render() {
     let {name, id} = this.props.board;
-    let currentLists = (this.props.boardLists[this.props.board.id] === undefined) ? [] :
-     this.props.boardLists[this.props.board.id];
-     console.log(this.props);
+    let {boardLists, board, lists, createNewTask, taskChecked, deleteList} = this.props;
+    let currentLists = (boardLists[board.id] === undefined) ? [] :
+     boardLists[board.id];
     return (
       <div className='board'>
+
       <Header />
 
       <div className='boardName'>{name}</div>
@@ -148,7 +150,7 @@ class Board extends Component {
               data-tip data-for='trash'
             >
               <svg
-                fill={snapshot.isDraggingOver ? 'blue': 'white'}
+                fill={snapshot.isDraggingOver ? 'rgb(185, 0, 0)': 'rgb(245, 245, 245)'}
                 width='34'
                 height="40"
               >
@@ -161,7 +163,7 @@ class Board extends Component {
 
         <div className='all_lists_wrapper'>
           {currentLists.map(listID => {
-            const list = this.props.lists[listID]
+            const list = lists[listID]
             const tasks = list.taskIDs.map(
               taskId => this.props.tasks[taskId]
             )
@@ -173,9 +175,9 @@ class Board extends Component {
                 boardID = {id}
                 name={list.name}
                 tasks={tasks}
-                onCreateNewChild={this.props.createNewTask}
-                taskChecked={this.props.taskChecked}
-                deleteList={this.props.deleteList}
+                onCreateNewChild={createNewTask}
+                taskChecked={taskChecked}
+                deleteList={deleteList}
               />
             )
           })}
@@ -189,7 +191,7 @@ class Board extends Component {
                   name='addAList'
                   onChange={this.onInputChange}
                   onKeyPress={this.onEnter}
-                  placeholder="List name, a.g. 'Monday'"
+                  placeholder="List name, a.g. 'To Do'"
                   maxLength="15"
                 />
                 <button
@@ -204,9 +206,11 @@ class Board extends Component {
         }
         </div>
         </DragDropContext>
+
       <ReactTooltip id='trash'>
         <span>You can throw your tasks here</span>
       </ReactTooltip>
+
     </div>)
   }
 }

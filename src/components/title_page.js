@@ -3,12 +3,12 @@ import {NavLink} from 'react-router-dom';
 import Header from './header.js';
 import Icons from '../icons/icons.svg';
 
-
 class TitlePage extends Component {
 
   state = {
     input: '',
-    toggleNewBoardMenu: false
+    toggleNewBoardMenu: false,
+    boardColor: 1,
   }
 
   onEnter = (e) => {
@@ -18,8 +18,8 @@ class TitlePage extends Component {
   }
 
   createNewBoard = () => {
-    this.props.createNewBoard(this.state.input);
-    this.setState({input: "", toggleNewBoardMenu: false})
+    this.props.createNewBoard(this.state.input, this.state.boardColor);
+    this.setState({input: "", toggleNewBoardMenu: false, boardColor: 1})
   }
 
   onInputChange = (input) => {
@@ -29,6 +29,12 @@ class TitlePage extends Component {
   toggleNewBoardMenu = () => {
     this.setState({
       toggleNewBoardMenu: !this.state.toggleNewBoardMenu
+    })
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      boardColor: e.target.value
     })
   }
 
@@ -67,6 +73,16 @@ class TitlePage extends Component {
                       onKeyPress={this.onEnter}
                       maxLength="15"
                     />
+                    <label>
+                      Choose the board's theme:
+                    </label>
+                    <select onChange={this.handleChange}>
+                      <option value="1">Orange</option>
+                      <option value="2">Purple</option>
+                      <option value="3">Green</option>
+                      <option value="4">Yellow</option>
+                      <option value="5">Blue</option>
+                    </select>
                     <button
                       onClick={this.toggleNewBoardMenu}
                       className='cancelButton no_select'
