@@ -129,9 +129,10 @@ class Board extends Component {
   }
 
   render() {
-    let {name} = this.props.board;
+    let {name, id} = this.props.board;
     let currentLists = (this.props.boardLists[this.props.board.id] === undefined) ? [] :
      this.props.boardLists[this.props.board.id];
+     console.log(this.props);
     return (
       <div className='board'>
       <Header />
@@ -158,46 +159,49 @@ class Board extends Component {
           )}
         </Droppable>
 
-        {currentLists.map(listID => {
-          const list = this.props.lists[listID]
-          const tasks = list.taskIDs.map(
-            taskId => this.props.tasks[taskId]
-          )
+        <div className='all_lists_wrapper'>
+          {currentLists.map(listID => {
+            const list = this.props.lists[listID]
+            const tasks = list.taskIDs.map(
+              taskId => this.props.tasks[taskId]
+            )
 
-          return (
-            <List
-              key={listID}
-              id={listID}
-              name={list.name}
-              tasks={tasks}
-              onCreateNewChild={this.props.createNewTask}
-              taskChecked={this.props.taskChecked}
-              deleteList={() => this.props.deleteList(listID, this.props.board.id)}
-            />
-          )
-        })}
-      </DragDropContext>
+            return (
+              <List
+                key={listID}
+                id={listID}
+                boardID = {id}
+                name={list.name}
+                tasks={tasks}
+                onCreateNewChild={this.props.createNewTask}
+                taskChecked={this.props.taskChecked}
+                deleteList={this.props.deleteList}
+              />
+            )
+          })}
 
-      {
-        this.state.addingList
-          ? <div className='create_a_list'>
-              <input
-                className='create_list_input'
-                type='text'
-                name='addAList'
-                onChange={this.onInputChange}
-                onKeyPress={this.onEnter}
-                placeholder="List name, a.g. 'Monday'"/>
-              <button
-                className='create_list_button no_select'
-                onClick={this.createNewList}
-                disabled={!this.state.input}
-              >
-                Create
-              </button>
-            </div>
-          : <div onClick={this.toggleAddListMenu} className='add_a_list no_select'>Add a list...</div>
-      }
+        {
+          this.state.addingList
+            ? <div className='create_a_list'>
+                <input
+                  className='create_list_input'
+                  type='text'
+                  name='addAList'
+                  onChange={this.onInputChange}
+                  onKeyPress={this.onEnter}
+                  placeholder="List name, a.g. 'Monday'"/>
+                <button
+                  className='create_list_button no_select'
+                  onClick={this.createNewList}
+                  disabled={!this.state.input}
+                >
+                  Create
+                </button>
+              </div>
+            : <div onClick={this.toggleAddListMenu} className='add_a_list no_select'>Add a list...</div>
+        }
+        </div>
+        </DragDropContext>
       <ReactTooltip id='trash'>
         <span>You can throw your tasks here</span>
       </ReactTooltip>

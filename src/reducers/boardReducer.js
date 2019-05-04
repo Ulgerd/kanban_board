@@ -10,6 +10,9 @@ export const initialState = {
 export function boardReducer(state = initialState, action) {
   switch (action.type) {
     case 'DELETE_LIST':
+    console.log(action.listID);
+    console.log(action.boardID);
+    //смени имя
       let newBoardLists = [
         ...state.boardLists[action.boardID]
       ]
@@ -23,7 +26,10 @@ export function boardReducer(state = initialState, action) {
       return {
         ...state,
         lists: newLists,
-        boardLists: [...from, ...to],
+        boardLists: {
+          ...state.boardLists,
+        [action.boardID]: [...from, ...to]
+        }
       }
 
     case 'UPDATE_LISTS':

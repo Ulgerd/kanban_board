@@ -34,7 +34,7 @@ class List extends Component {
           <div className='list_header'>{name}</div>
           <div className='listXButton' onClick={() => {
               if (window.confirm('Are you sure you want to delete this list?'))
-                this.props.deleteList(this.props.id)
+                this.props.deleteList(this.props.id, this.props.boardID)
             }}>
             <svg fill='black' width='25' height="25">
               <use xlinkHref={`${Icons}#close`}/>
