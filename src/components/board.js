@@ -8,6 +8,8 @@ import Header from './header.js';
 import List from './list';
 import Icons from '../icons/icons.svg';
 
+import '../css/board.css';
+
 class Board extends Component {
 
   state = {

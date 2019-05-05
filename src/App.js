@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createNewBoard } from './actions/titlePageActions'
 import TitlePage from './components/title_page';
 import Board from './components/board';
+import NoPage from './components/nopage';
 import './css/App.css';
 
 class App extends Component {
@@ -33,6 +34,7 @@ class App extends Component {
                 />
               )
             }
+            <Route component={NoPage} />
 
           </Switch>
         </div>

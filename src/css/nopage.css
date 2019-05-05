@@ -1,0 +1,19 @@
+.no_page {
+  position: relative;
+  display: inline-block;
+  margin-top: 2em;
+  width: 30%;
+  line-height: 2.4em;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  color: #000;
+  outline: none;
+  border-top-color: rgba(0,0,0,.3);
+  border-radius: 5px;
+  top: -10px; right: -10px; bottom: -10px; left: -10px;
+  z-index: -1;
+  border-radius: 8px;
+  background: linear-gradient(rgba(200,200,200,0.7), rgba(240,240,240,0.7));
+}
