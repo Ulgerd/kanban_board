@@ -77,11 +77,11 @@ class TitlePage extends Component {
                       Choose the board's theme:
                     </label>
                     <select onChange={this.handleChange}>
-                      <option value="1">Orange</option>
-                      <option value="2">Purple</option>
-                      <option value="3">Green</option>
-                      <option value="4">Yellow</option>
-                      <option value="5">Blue</option>
+                      <option value="1">Marble</option>
+                      <option value="2">Winter</option>
+                      <option value="3">Blu</option>
+                      <option value="4">Polished steel</option>
+                      <option value="5">Titanium</option>
                     </select>
                     <button
                       onClick={this.toggleNewBoardMenu}

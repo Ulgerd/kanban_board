@@ -207,35 +207,55 @@
 }
 
 .create_new_board_wrapper {
-  min-height: 6em;
+  /* min-height: 6em; */
   min-width: 12em;
   margin: 0 auto;
-  background-color: rgb(111, 126, 219);
-  color: white;
-  position: relative;
-  border: 1px solid black;
-  border-radius: 0.4em;
-  box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.2), 5px 5px 5px 0 rgba(0,0,0,0.2);
+  /* background-color: rgb(111, 126, 219); */
+  /* color: white; */
+  /* position: relative; */
+  /* border: 1px solid black; */
+  /* border-radius: 0.4em; */
+  /* box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.2), 5px 5px 5px 0 rgba(0,0,0,0.2); */
 }
 
 .createNewBoard {
-  margin: 0;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1em;
+  position: relative;
+  display: inline-block;
   height: 100%;
-  width: 100%;
+  width: 80%;
+  line-height: 2.4em;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  color: #000;
+  outline: none;
+  border: 1px solid rgba(110,121,128,.8);
+  border-top-color: rgba(0,0,0,.3);
+  border-radius: 5px;
+  background: rgb(206, 220, 231) linear-gradient(rgb(206,220,231), rgb(89,106,114));
+  box-shadow:
+   0 -1px rgba(10,21,28,.9) inset,
+   0 1px rgba(255,255,255,.5) inset;
 }
-
 .createNewBoard:hover {
-  color: rgb(111, 219, 149);
+  background: linear-gradient(#d2dfea, #71828c);
 }
 
 .createNewBoard:active {
-  box-shadow: none;
+  line-height: 2.6em;
+  background: linear-gradient(#bac6cf, #c5d3de 20%, #71828c);
+  box-shadow: 0 -1px rgba(255,255,255,.4) inset;
 }
+
+.createNewBoard:before {
+  content: "";
+  position: absolute;
+  top: -10px; right: -10px; bottom: -10px; left: -10px;
+  z-index: -1;
+  border-radius: 8px;
+  background: linear-gradient(rgba(200,200,200,0.7), rgba(240,240,240,0.7));
+ }
 
 .board_elem {
   font-size: 1.3rem;
@@ -273,81 +293,67 @@
 }
 
 .board_2 {
-  background-color: #abaea4;
+  background-color: #888e91;
   /* IE9, iOS 3.2+ */
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjOGZhZWI2IiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNiOWM0YmYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjE3MzAwMDAwMDAwMDAwMDAxIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2MwYTk4MCIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNTQ3OTk5OTk5OTk5OTk5OSIvPjxzdG9wIHN0b3AtY29sb3I9IiM5NDk3YTMiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjc5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzkyYjNiOCIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L3JhZGlhbEdyYWRpZW50PjxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=);
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNDEuNDIxMzU2MjM3MzA5NSUiPjxzdG9wIHN0b3AtY29sb3I9IiNlNmRhZGEiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjAxMTAwMDAwMDAwMDAwMDAwMSIvPjxzdG9wIHN0b3AtY29sb3I9IiMyNzQwNDYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9yYWRpYWxHcmFkaWVudD48cmVjdCB4PSItNTAiIHk9Ii01MCIgd2lkdGg9IjEwMSIgaGVpZ2h0PSIxMDEiIGZpbGw9InVybCgjdnNnZykiIC8+PC9zdmc+);
   /* Android 2.3- hack (needed for the actual radial gradient) */
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjOGZhZWI2IiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNiOWM0YmYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjE3MzAwMDAwMDAwMDAwMDAxIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2MwYTk4MCIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNTQ3OTk5OTk5OTk5OTk5OSIvPjxzdG9wIHN0b3AtY29sb3I9IiM5NDk3YTMiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjc5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzkyYjNiOCIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L3JhZGlhbEdyYWRpZW50PjxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=),
-      -webkit-gradient(radial, left top, 0, left top, 511,color-stop(0, rgb(143, 174, 182)),color-stop(0.173, rgb(185, 196, 191)),color-stop(0.548, rgb(192, 169, 128)),color-stop(0.79, rgb(148, 151, 163)),color-stop(1, rgb(146, 179, 184)));
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNDEuNDIxMzU2MjM3MzA5NSUiPjxzdG9wIHN0b3AtY29sb3I9IiNlNmRhZGEiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjAxMTAwMDAwMDAwMDAwMDAwMSIvPjxzdG9wIHN0b3AtY29sb3I9IiMyNzQwNDYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9yYWRpYWxHcmFkaWVudD48cmVjdCB4PSItNTAiIHk9Ii01MCIgd2lkdGg9IjEwMSIgaGVpZ2h0PSIxMDEiIGZpbGw9InVybCgjdnNnZykiIC8+PC9zdmc+),
+      -webkit-gradient(radial, left top, 0, left top, 723,color-stop(0.011, rgb(230, 218, 218)),color-stop(1, rgb(39, 64, 70)));
   /* Android 2.3 */
-  background-image: -webkit-radial-gradient(left top, ellipse farthest-side,rgb(143, 174, 182) 0%,rgb(185, 196, 191) 17.3%,rgb(192, 169, 128) 54.8%,rgb(148, 151, 163) 79%,rgb(146, 179, 184) 100%);
+  background-image: -webkit-radial-gradient(left top, circle farthest-corner,rgb(230, 218, 218) 1.1%,rgb(39, 64, 70) 100%);
   /* IE10+ */
-  background-image: radial-gradient(ellipse farthest-side at left top,rgb(143, 174, 182) 0%,rgb(185, 196, 191) 17.3%,rgb(192, 169, 128) 54.8%,rgb(148, 151, 163) 79%,rgb(146, 179, 184) 100%);
-  background-image: -ms-radial-gradient(left top, ellipse farthest-side,rgb(143, 174, 182) 0%,rgb(185, 196, 191) 17.3%,rgb(192, 169, 128) 54.8%,rgb(148, 151, 163) 79%,rgb(146, 179, 184) 100%);
-    color: white;
+  background-image: radial-gradient(circle farthest-corner at left top,rgb(230, 218, 218) 1.1%,rgb(39, 64, 70) 100%);
+  background-image: -ms-radial-gradient(left top, circle farthest-corner,rgb(230, 218, 218) 1.1%,rgb(39, 64, 70) 100%);
+
+  color: white;
 }
 
 .board_3 {
-  background-color: #aeaeae;
+  background-color: #7d9bae;
   /* IE9, iOS 3.2+ */
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNTkuNiUiPjxzdG9wIHN0b3AtY29sb3I9IiNlZmVmZWYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2JiYmJiYiIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuMjQ3Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzQwNDA0MCIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNTIxIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2RmZGZkZiIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNzkiLz48c3RvcCBzdG9wLWNvbG9yPSIjZWZlZmVmIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iLTUwIiB5PSItNTAiIHdpZHRoPSIxMDEiIGhlaWdodD0iMTAxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNDEuNDIxMzU2MjM3MzA5NSUiPjxzdG9wIHN0b3AtY29sb3I9IiMwMDQxNmEiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjAxMTAwMDAwMDAwMDAwMDAwMSIvPjxzdG9wIHN0b3AtY29sb3I9IiNlNGU1ZTYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjg5MDk5OTk5OTk5OTk5OTkiLz48L3JhZGlhbEdyYWRpZW50PjxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=);
   /* Android 2.3- hack (needed for the actual radial gradient) */
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNTkuNiUiPjxzdG9wIHN0b3AtY29sb3I9IiNlZmVmZWYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2JiYmJiYiIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuMjQ3Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzQwNDA0MCIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNTIxIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2RmZGZkZiIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNzkiLz48c3RvcCBzdG9wLWNvbG9yPSIjZWZlZmVmIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iLTUwIiB5PSItNTAiIHdpZHRoPSIxMDEiIGhlaWdodD0iMTAxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==),
-      -webkit-gradient(radial, left top, 0, left top, 529,color-stop(0, rgb(239, 239, 239)),color-stop(0.247, rgb(187, 187, 187)),color-stop(0.521, rgb(64, 64, 64)),color-stop(0.79, rgb(223, 223, 223)),color-stop(1, rgb(239, 239, 239)));
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNDEuNDIxMzU2MjM3MzA5NSUiPjxzdG9wIHN0b3AtY29sb3I9IiMwMDQxNmEiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjAxMTAwMDAwMDAwMDAwMDAwMSIvPjxzdG9wIHN0b3AtY29sb3I9IiNlNGU1ZTYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjg5MDk5OTk5OTk5OTk5OTkiLz48L3JhZGlhbEdyYWRpZW50PjxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=),
+      -webkit-gradient(radial, left top, 0, left top, 723,color-stop(0.011, rgb(0, 65, 106)),color-stop(0.891, rgb(228, 229, 230)));
   /* Android 2.3 */
-  background-image: -webkit-radial-gradient(left top, 608px 450px,rgb(239, 239, 239) 0%,rgb(187, 187, 187) 24.7%,rgb(64, 64, 64) 52.1%,rgb(223, 223, 223) 79%,rgb(239, 239, 239) 100%);
+  background-image: -webkit-radial-gradient(left top, circle farthest-corner,rgb(0, 65, 106) 1.1%,rgb(228, 229, 230) 89.1%);
   /* IE10+ */
-  background-image: radial-gradient(ellipse 608px 450px at left top,rgb(239, 239, 239) 0%,rgb(187, 187, 187) 24.7%,rgb(64, 64, 64) 52.1%,rgb(223, 223, 223) 79%,rgb(239, 239, 239) 100%);
-  background-image: -ms-radial-gradient(left top, 608px 450px,rgb(239, 239, 239) 0%,rgb(187, 187, 187) 24.7%,rgb(64, 64, 64) 52.1%,rgb(223, 223, 223) 79%,rgb(239, 239, 239) 100%);
-    color: white;
+  background-image: radial-gradient(circle farthest-corner at left top,rgb(0, 65, 106) 1.1%,rgb(228, 229, 230) 89.1%);
+  background-image: -ms-radial-gradient(left top, circle farthest-corner,rgb(0, 65, 106) 1.1%,rgb(228, 229, 230) 89.1%);
+
+  color: white;
 }
 
 .board_4 {
-  background-color: #5c82c5;
+  background-color: #777777;
   /* IE9, iOS 3.2+ */
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNTkuNiUiPjxzdG9wIHN0b3AtY29sb3I9IiNhM2Q0ZmYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzRjNmFiMCIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuMjg5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzQ2MzM4YyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNDEyMDAwMDAwMDAwMDAwMDMiLz48c3RvcCBzdG9wLWNvbG9yPSIjNGM2YWIwIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMC41NDc5OTk5OTk5OTk5OTk5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzU5YTNlNyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNzY5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzU4ODNjMyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L3JhZGlhbEdyYWRpZW50PjxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=);
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNDEuNDIxMzU2MjM3MzA5NSUiPjxzdG9wIHN0b3AtY29sb3I9IiM2NzY3NjciIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjAxMTAwMDAwMDAwMDAwMDAwMSIvPjxzdG9wIHN0b3AtY29sb3I9IiM4Nzg3ODciIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjY1Nzk5OTk5OTk5OTk5OTkiLz48c3RvcCBzdG9wLWNvbG9yPSIjNjc2NzY3IiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iLTUwIiB5PSItNTAiIHdpZHRoPSIxMDEiIGhlaWdodD0iMTAxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
   /* Android 2.3- hack (needed for the actual radial gradient) */
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNTkuNiUiPjxzdG9wIHN0b3AtY29sb3I9IiNhM2Q0ZmYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzRjNmFiMCIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuMjg5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzQ2MzM4YyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNDEyMDAwMDAwMDAwMDAwMDMiLz48c3RvcCBzdG9wLWNvbG9yPSIjNGM2YWIwIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMC41NDc5OTk5OTk5OTk5OTk5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzU5YTNlNyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNzY5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzU4ODNjMyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L3JhZGlhbEdyYWRpZW50PjxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=),
-      -webkit-gradient(radial, left top, 0, left top, 529,color-stop(0, rgb(163, 212, 255)),color-stop(0.289, rgb(76, 106, 176)),color-stop(0.412, rgb(70, 51, 140)),color-stop(0.548, rgb(76, 106, 176)),color-stop(0.769, rgb(89, 163, 231)),color-stop(1, rgb(88, 131, 195)));
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNDEuNDIxMzU2MjM3MzA5NSUiPjxzdG9wIHN0b3AtY29sb3I9IiM2NzY3NjciIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjAxMTAwMDAwMDAwMDAwMDAwMSIvPjxzdG9wIHN0b3AtY29sb3I9IiM4Nzg3ODciIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjY1Nzk5OTk5OTk5OTk5OTkiLz48c3RvcCBzdG9wLWNvbG9yPSIjNjc2NzY3IiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iLTUwIiB5PSItNTAiIHdpZHRoPSIxMDEiIGhlaWdodD0iMTAxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==),
+      -webkit-gradient(radial, left top, 0, left top, 723,color-stop(0.011, rgb(103, 103, 103)),color-stop(0.658, rgb(135, 135, 135)),color-stop(1, rgb(103, 103, 103)));
   /* Android 2.3 */
-  background-image: -webkit-radial-gradient(left top, 608px 450px,rgb(163, 212, 255) 0%,rgb(76, 106, 176) 28.9%,rgb(70, 51, 140) 41.2%,rgb(76, 106, 176) 54.8%,rgb(89, 163, 231) 76.9%,rgb(88, 131, 195) 100%);
+  background-image: -webkit-radial-gradient(left top, circle farthest-corner,rgb(103, 103, 103) 1.1%,rgb(135, 135, 135) 65.8%,rgb(103, 103, 103) 100%);
   /* IE10+ */
-  background-image: radial-gradient(ellipse 608px 450px at left top,rgb(163, 212, 255) 0%,rgb(76, 106, 176) 28.9%,rgb(70, 51, 140) 41.2%,rgb(76, 106, 176) 54.8%,rgb(89, 163, 231) 76.9%,rgb(88, 131, 195) 100%);
-  background-image: -ms-radial-gradient(left top, 608px 450px,rgb(163, 212, 255) 0%,rgb(76, 106, 176) 28.9%,rgb(70, 51, 140) 41.2%,rgb(76, 106, 176) 54.8%,rgb(89, 163, 231) 76.9%,rgb(88, 131, 195) 100%);
-    color: black;
+  background-image: radial-gradient(circle farthest-corner at left top,rgb(103, 103, 103) 1.1%,rgb(135, 135, 135) 65.8%,rgb(103, 103, 103) 100%);
+  background-image: -ms-radial-gradient(left top, circle farthest-corner,rgb(103, 103, 103) 1.1%,rgb(135, 135, 135) 65.8%,rgb(103, 103, 103) 100%);
+  color: white;
 }
 
 .board_5 {
-    background-color: rgba(121, 185, 233, 0.87);
-    /* IE9, iOS 3.2+ */
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIyMC41JSIgeTE9IjEwOC41JSIgeDI9Ijc5LjUlIiB5Mj0iLTguNSUiPjxzdG9wIHN0b3AtY29sb3I9IiMxYjY5ZTAiIHN0b3Atb3BhY2l0eT0iMC43NiIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzVkOGNkNCIgc3RvcC1vcGFjaXR5PSIwLjkxIiBvZmZzZXQ9IjAuMjIzIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzY0OWVlZSIgc3RvcC1vcGFjaXR5PSIwLjk0IiBvZmZzZXQ9IjAuNDE2MDAwMDAwMDAwMDAwMDQiLz48c3RvcCBzdG9wLWNvbG9yPSIjODllNGYyIiBzdG9wLW9wYWNpdHk9IjAuNzciIG9mZnNldD0iMC42NjIiLz48c3RvcCBzdG9wLWNvbG9yPSIjZDdmZGYyIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=);
-    background-image: -webkit-gradient(linear, 20.5% 108.5%, 79.5% -8.5%,color-stop(0, rgba(27, 105, 224, 0.76)),color-stop(0.223, rgba(93, 140, 212, 0.91)),color-stop(0.416, rgba(100, 158, 238, 0.94)),color-stop(0.662, rgba(137, 228, 242, 0.77)),color-stop(1, rgb(215, 253, 242)));
-    /* Android 2.3 */
-    background-image: -webkit-repeating-linear-gradient(67deg,rgba(27, 105, 224, 0.76) 0%,rgba(93, 140, 212, 0.91) 22.3%,rgba(100, 158, 238, 0.94) 41.6%,rgba(137, 228, 242, 0.77) 66.2%,rgb(215, 253, 242) 100%);
-    /* IE10+ */
-    background-image: repeating-linear-gradient(23deg,rgba(27, 105, 224, 0.76) 0%,rgba(93, 140, 212, 0.91) 22.3%,rgba(100, 158, 238, 0.94) 41.6%,rgba(137, 228, 242, 0.77) 66.2%,rgb(215, 253, 242) 100%);
-    background-image: -ms-repeating-linear-gradient(67deg,rgba(27, 105, 224, 0.76) 0%,rgba(93, 140, 212, 0.91) 22.3%,rgba(100, 158, 238, 0.94) 41.6%,rgba(137, 228, 242, 0.77) 66.2%,rgb(215, 253, 242) 100%);
+  background-color: #626e7a;
+  /* IE9, iOS 3.2+ */
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNDEuNDIxMzU2MjM3MzA5NSUiPjxzdG9wIHN0b3AtY29sb3I9IiMyODMwNDgiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjAxMTAwMDAwMDAwMDAwMDAwMSIvPjxzdG9wIHN0b3AtY29sb3I9IiM4NTkzOTgiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjczOCIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iLTUwIiB5PSItNTAiIHdpZHRoPSIxMDEiIGhlaWdodD0iMTAxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+  /* Android 2.3- hack (needed for the actual radial gradient) */
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNDEuNDIxMzU2MjM3MzA5NSUiPjxzdG9wIHN0b3AtY29sb3I9IiMyODMwNDgiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjAxMTAwMDAwMDAwMDAwMDAwMSIvPjxzdG9wIHN0b3AtY29sb3I9IiM4NTkzOTgiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjczOCIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iLTUwIiB5PSItNTAiIHdpZHRoPSIxMDEiIGhlaWdodD0iMTAxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==),
+      -webkit-gradient(radial, left top, 0, left top, 723,color-stop(0.011, rgb(40, 48, 72)),color-stop(0.738, rgb(133, 147, 152)));
+  /* Android 2.3 */
+  background-image: -webkit-radial-gradient(left top, circle farthest-corner,rgb(40, 48, 72) 1.1%,rgb(133, 147, 152) 73.8%);
+  /* IE10+ */
+  background-image: radial-gradient(circle farthest-corner at left top,rgb(40, 48, 72) 1.1%,rgb(133, 147, 152) 73.8%);
+  background-image: -ms-radial-gradient(left top, circle farthest-corner,rgb(40, 48, 72) 1.1%,rgb(133, 147, 152) 73.8%);
 
-    color: white;
+  color: white;
 }
-
-/* @media \0screen\,screen\9 {
-    .board_1 {
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fffdecd7",endColorstr="#c2e04a1b",GradientType=0);
-    }
-    .board_2 {
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffd396f9",endColorstr="#c212094a",GradientType=0);
-    }
-    .board_3 {
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff96f9c9",endColorstr="#c212094a",GradientType=0);
-    }
-    .board_4 {
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fff8fdd7",endColorstr="#c25d6f0e",GradientType=0);
-    }
-    .board_5 {
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffd7fdf2",endColorstr="#c21b69e0",GradientType=0);
-    }
-} */
 
 .navLink {
   position: absolute;
@@ -363,7 +369,29 @@
 
 .creatingNewBoard {
   text-shadow: 4px 1px 2px rgba(150, 150, 150, 1);
+  background: linear-gradient(#d2dfea, #71828c);
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: 1px solid rgba(110,121,128,.8);
+  border-top-color: rgba(0,0,0,.3);
+  border-radius: 5px;
+  background: rgb(206, 220, 231) linear-gradient(rgb(206,220,231), rgb(89,106,114));
+  box-shadow:
+   0 -1px rgba(10,21,28,.9) inset,
+   0 1px rgba(255,255,255,.5) inset;
 }
+
+.creatingNewBoard:before {
+  content: "";
+  position: absolute;
+  top: -10px; right: -10px; bottom: -10px; left: -10px;
+  z-index: -1;
+  border-radius: 8px;
+  background: linear-gradient(rgba(200,200,200,0.7), rgba(240,240,240,0.7));
+ }
 
 .creatingNewBoard_header {
   display: flex;
@@ -371,7 +399,6 @@
   align-items: center;
   justify-content: space-around;
   font-size: 0.9em;
-  height: 33%;
 }
 
 .creatingNewBoard_header :nth-child(1) {
@@ -425,6 +452,18 @@
   width: 100%;
   height: 2em;
   font-size: 0.8em;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* SVG background image */
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23FF0000'><polygon points='20,0 80,0 50,52'/></svg>");
+  background-size: 12px;
+  background-color: white;
+  background-position-x: right;
+  background-position-y: calc(100% - 10px);
+  background-repeat: no-repeat;
 }
 
 .creatingNewBoard_body :nth-child(4) > option {
@@ -458,10 +497,18 @@
 
 .createButton {
   border: none;
+  background-color: rgb(220, 220, 220);
 }
 
 .createButton:hover {
   box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
+  background-color: rgb(220, 220, 220);
+
+}
+
+.createButton:hover:disabled {
+  box-shadow: none;
+  background-color: rgb(220, 220, 220);
 }
 
 /* ///////////////////////////////////////////////////////////////////////////////////////// */
