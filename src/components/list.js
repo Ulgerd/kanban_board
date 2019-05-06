@@ -12,20 +12,29 @@ class List extends Component {
 
   submit = () => {
     confirmAlert({
-      title: 'List removal',
-      message: 'Are you sure you want to delete this list?',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: () => this.props.deleteList(this.props.id, this.props.boardID)
-        },
-        {
-          label: 'No',
-        }
-      ]
-    })
-  };
-
+      customUI: ({ onClose }) => {
+        return (
+          <div className='react-confirm-alert'>
+            <div className='react-confirm-alert-body'>
+              <h1>List removal</h1>
+              <h3>Are you sure you want to delete this list?</h3>
+              <div className='react-confirm-alert-button-group'>
+                <button onClick={onClose}>No</button>
+                <button
+                  onClick={() => {
+                    this.props.deleteList(this.props.id, this.props.boardID);
+                    onClose();
+                  }}
+                >
+                  Yes, Delete it!
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      }
+    });
+    }
 
   onInputChildName = (input) => {
     this.setState({
@@ -57,7 +66,7 @@ class List extends Component {
             className='listXButton'
             onClick={this.submit}
           >
-            <svg fill='black' width='25' height="25">
+            <svg fill='black' width='1em' height="1em">
               <use xlinkHref={`${Icons}#close`}/>
             </svg>
           </div>

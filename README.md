@@ -1,9 +1,6 @@
 ## Kanban boards
 
-ToDo:
-1) CSS done;
-2) try/catch;
-3) 404 page;
-4) split it;
-
-to be continued...
+This is how main page looks like:
+![Main_menu](public/Main_menu.png)
+Board example:
+![Board_example](public/Board_example.png)
