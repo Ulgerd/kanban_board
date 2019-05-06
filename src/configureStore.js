@@ -1,9 +1,7 @@
 import { applyMiddleware, createStore } from 'redux';
-import { save, load, clear } from 'redux-localstorage-simple';
+import { save, load } from 'redux-localstorage-simple';
 import { rootReducer } from './reducers/rootReducer';
 
-// const createStoreWithMiddleware = applyMiddleware( save() )( createStore );
-//
-// export const store = createStoreWithMiddleware( rootReducer, load() );
+const createStoreWithMiddleware = applyMiddleware( save() )( createStore );
 
-export const store = createStore( rootReducer );
+export const store = createStoreWithMiddleware( rootReducer, load() );
