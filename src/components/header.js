@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Icons from '../icons/icons.svg';
 
-export default class Header extends Component {
-
-  render() {
-    return (<div className='header'>
+export default function Header() {
+  return (
+    <div className='header'>
       <div className='XButton'>
         <NavLink to={`/`}>
           <svg fill='rgb(34, 48, 137)' width='6em' height="3em">
@@ -13,6 +12,6 @@ export default class Header extends Component {
           </svg>
         </NavLink>
       </div>
-    </div>)
-  }
+    </div>
+  )
 }

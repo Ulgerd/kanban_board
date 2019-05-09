@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Draggable } from 'react-beautiful-dnd'
 
 function getStyle(style, snapshot) {
@@ -12,29 +12,25 @@ function getStyle(style, snapshot) {
   };
 }
 
-class Task extends Component {
+export default function Task(props) {
 
-  render() {
     return (
       <Draggable
-        draggableId={this.props.task.id}
-        index={this.props.index}
+        draggableId={props.task.id}
+        index={props.index}
       >
         {(provided, snapshot) => (
           <div
-            className = {this.props.task.checked ? 'task _checked':'task'}
+            className = {props.task.checked ? 'task _checked':'task'}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            onClick={this.props.onClick}
+            onClick={props.onClick}
             style={getStyle(provided.draggableProps.style, snapshot)}
           >
-            {this.props.task.content}
+            {props.task.content}
           </div>
         )}
       </Draggable>
     )
   }
-}
-
-export default Task;
