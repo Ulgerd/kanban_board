@@ -5,3 +5,4 @@ export const UPDATE_LISTS = 'UPDATE_LISTS';
 export const TASK_CHECKED = 'TASK_CHECKED';
 export const UPDATE_LISTS_AND_TASKS = 'UPDATE_LISTS_AND_TASKS';
 export const DELETE_LIST = 'DELETE_LIST';
+export const DELETE_BOARD = 'DELETE_BOARD';

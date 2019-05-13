@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "immer": "^3.1.1",
     "nanoid": "^2.0.1",
     "react": "^16.8.6",
     "react-beautiful-dnd": "^11.0.1",
@@ -13,7 +14,6 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "react-sortablejs": "^1.5.1",
-    "react-tooltip": "^3.10.0",
     "redux": "^4.0.1",
     "redux-localstorage-simple": "^2.1.6"
   },

@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {DragDropContext, Droppable} from 'react-beautiful-dnd'
+import React, {useState, useEffect} from 'react';
+import {DragDropContext} from 'react-beautiful-dnd'
 import {connect} from 'react-redux';
-import ReactTooltip from 'react-tooltip';
+import produce from "immer";
 
 import {
   createNewList,
@@ -9,20 +9,59 @@ import {
   updateListsAfterDragEnd,
   taskChecked,
   updateListsAndTasksDragEnd,
-  deleteList
+  deleteList,
 } from '../actions/boardActions'
 import Header from './header.js';
 import List from './list';
-import Icons from '../icons/icons.svg';
 
-import '../css/board.css';
+import '../assets/css/board.css';
 
 function Board(props) {
 
   const [input, setInput] = useState('');
   const [addingList, setAddingList] = useState('');
 
+  useEffect(() => {
+    document.title = `Board ${props.board.name}`;
+  });
+
+  const deleteTasks = (listID) => {
+
+    let newTasks = {
+      ...props.tasks
+    };
+
+    let checkedTasks = []
+
+    Object.keys(newTasks).map(task => {
+      if (newTasks[task].checked === true) {
+        checkedTasks.push(task)
+      }
+      return null;
+    })
+
+    let tasksToDelete = checkedTasks.filter(
+      (task) => props.lists[listID].taskIDs.indexOf(task) >= 0
+    );
+
+    tasksToDelete.forEach(task => {
+      delete newTasks[task];
+    })
+
+    let newTaskIDs = props.lists[listID].taskIDs.filter(
+      (task) => tasksToDelete.indexOf(task) < 0
+    );
+
+    let newLists = produce(props.lists, draft => {
+      draft[listID].taskIDs = newTaskIDs;
+    })
+
+    props.updateListsAndTasksDragEnd(newLists, newTasks)
+    return
+  }
+
   const onDragEnd = result => {
+
     let {destination, source, draggableId} = result;
 
     if (!destination) {
@@ -33,87 +72,66 @@ function Board(props) {
       return
     }
 
-    //Moving to trash
-    if (destination.droppableId === 'trash') {
-      let toDelete = props.lists[source.droppableId].taskIDs.indexOf(draggableId);
-
-      let from = props.lists[source.droppableId].taskIDs.slice(0, toDelete);
-      let to = props.lists[source.droppableId].taskIDs.slice(toDelete + 1, props.lists[source.droppableId].taskIDs.length);
-      let newLists = {
-        ...props.lists,
-        [source.droppableId]: {
-          ...props.lists[source.droppableId],
-          taskIDs: [
-            ...from,
-            ...to
-          ]
-        }
-      };
-      let newTasks = {
-        ...props.tasks
-      };
-      delete newTasks[draggableId];
-
-      props.updateListsAndTasksDragEnd(newLists, newTasks)
-      return
-    }
-
     const start = props.lists[source.droppableId]
     const finish = props.lists[destination.droppableId]
 
     //Moving in one list
     if (start === finish) {
-      const newTaskIds = Array.from(start.taskIDs)
+
+      let newTaskIds = Array.from(start.taskIDs)
       newTaskIds.splice(source.index, 1)
       newTaskIds.splice(destination.index, 0, draggableId)
 
-      const newList = {
-        ...start,
-        taskIDs: newTaskIds
-      }
+      let newList = produce(start, draft => {
+        draft.taskIDs = newTaskIds;
+      })
 
-      const newState = {
-        ...props.lists,
-        [source.droppableId]: newList
-      }
+      let newState = produce(props.lists, draft => {
+        draft[source.droppableId] = newList;
+      })
 
       props.updateListsAfterDragEnd(newState)
       return
     }
 
     // Moving from one list to another
-    const startTaskIds = Array.from(start.taskIDs)
+    let startTaskIds = Array.from(start.taskIDs)
     startTaskIds.splice(source.index, 1)
-    const newStart = {
-      ...start,
-      taskIDs: startTaskIds
-    }
 
-    const finishTaskIds = Array.from(finish.taskIDs)
+    let newStart = produce(start, draft => {
+      draft.taskIDs = startTaskIds;
+    })
+
+    let finishTaskIds = Array.from(finish.taskIDs)
     finishTaskIds.splice(destination.index, 0, draggableId)
-    const newFinish = {
-      ...finish,
-      taskIDs: finishTaskIds
-    }
 
-    const newState = {
-      ...props.lists,
-      [source.droppableId]: newStart,
-      [destination.droppableId]: newFinish
-    }
+    let newFinish = produce(finish, draft => {
+      draft.taskIDs = finishTaskIds;
+    })
+
+    let newState = produce(props.lists, draft => {
+      draft[source.droppableId] = newStart;
+      draft[destination.droppableId] = newFinish;
+    })
+
     props.updateListsAfterDragEnd(newState)
   }
 
   const onEnter = (e) => {
     if (e.key === 'Enter' && input !== '') {
-      createNewList();
+      onCreateNewList();
     }
   }
 
-  const createNewList = () => {
+  const onCreateNewList = () => {
     setInput('');
     setAddingList(false);
     props.createNewList(input, props.board.id);
+  }
+
+  const onCancel = () => {
+    setInput('');
+    setAddingList(false);
   }
 
   return (
@@ -124,31 +142,8 @@ function Board(props) {
       <div className='boardName'>{props.board.name}</div>
 
         <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId={'trash'} type="TASK">
-            {
-              (provided, snapshot) => (
-                <div
-                  className='trash'
-                  ref={provided.innerRef}
-                  data-tip="data-tip"
-                  data-for='trash'
-                >
-                  <svg
-                    fill={snapshot.isDraggingOver
-                      ? 'rgb(185, 0, 0)'
-                      : 'rgb(245, 245, 245)'}
-                    width='34'
-                    height="40"
-                  >
-                    <use xlinkHref={`${Icons}#trash`}/>
-                    {provided.placeholder}
-                  </svg>
-                </div>
-              )
-            }
-          </Droppable>
-
           <div className='all_lists_wrapper'>
+
             {
               (
                 (props.boardLists[props.board.id] === undefined)
@@ -167,6 +162,7 @@ function Board(props) {
                     onCreateNewChild={props.createNewTask}
                     taskChecked={props.taskChecked}
                     deleteList={props.deleteList}
+                    deleteTasks={deleteTasks}
                   />
                 )
               })
@@ -186,11 +182,17 @@ function Board(props) {
                       maxLength="15"
                     />
                     <button
+                    className='cancel_list_button no_select'
+                    onClick={onCancel}
+                    >
+                    Cancel
+                    </button>
+                    <button
                       className='create_list_button no_select'
-                      onClick={createNewList}
+                      onClick={onCreateNewList}
                       disabled={!input}
                     >
-                      Create
+                      Add
                     </button>
                   </div>
                 : <div
@@ -202,11 +204,6 @@ function Board(props) {
             }
           </div>
         </DragDropContext>
-
-        <ReactTooltip id='trash'>
-          <span>You can throw your tasks here</span>
-        </ReactTooltip>
-
       </div>
     )
 }
@@ -221,7 +218,7 @@ const mapDispatchToProps = dispatch => ({
   updateListsAfterDragEnd: (newLists) => dispatch(updateListsAfterDragEnd(newLists)),
   updateListsAndTasksDragEnd: (newLists, newTasks) => dispatch(updateListsAndTasksDragEnd(newLists, newTasks)),
   taskChecked: (id) => dispatch(taskChecked(id)),
-  deleteList: (id, boardID) => dispatch(deleteList(id, boardID))
+  deleteList: (id, boardID) => dispatch(deleteList(id, boardID)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

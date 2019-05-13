@@ -1,4 +1,5 @@
 import nanoid from 'nanoid';
+import produce from "immer";
 
 export const initialState = {
   tasks: {},
@@ -10,109 +11,79 @@ export const initialState = {
 export function boardReducer(state = initialState, action) {
   switch (action.type) {
     case 'DELETE_LIST':
-      let currentBoardLists = [
-        ...state.boardLists[action.boardID]
-      ]
-      let toDelete = currentBoardLists.indexOf(action.listID);
-      let from = currentBoardLists.slice(0, toDelete);
-      let to = currentBoardLists.slice(toDelete+1, currentBoardLists.length)
+
+      let currentBoardLists = [...state.boardLists[action.boardID]].filter(
+        item => item !== action.listID
+      )
+
       let newLists = {
         ...state.lists
       };
       delete newLists[action.listID];
 
-      return {
-        ...state,
-        lists: newLists,
-        boardLists: {
-          ...state.boardLists,
-          [action.boardID]: [...from, ...to]
-        }
-      }
+      return produce(state, draft => {
+        draft.lists = newLists;
+        draft.boardLists[action.boardID] = [...currentBoardLists]
+      })
 
     case 'UPDATE_LISTS':
-      return {
-        ...state,
-        lists: action.newLists
-      }
+      return produce(state, draft => {
+        draft.lists = action.newLists
+      })
 
     case 'UPDATE_LISTS_AND_TASKS':
-      return {
-        ...state,
-        lists: action.newLists,
-        tasks: action.newTasks,
-      }
+      return produce(state, draft => {
+        draft.lists = action.newLists
+        draft.tasks = action.newTasks
+      })
 
     case 'CREATE_NEW_LIST':
       let id = nanoid(4);
-      let boardLists =
-        (state.boardLists[action.boardID] === undefined) ?
-          [id] :
-          [...state.boardLists[action.boardID], id];
 
-      return {
-        ...state,
-        addingList: false,
-        boardLists: { ...state.boardLists,
-          [action.boardID]: boardLists
-        },
-        lists: {
-          ...state.lists,
-          [id]: {
-            name: action.input,
-            taskIDs: []
-          }
+      let boardLists = (state.boardLists[action.boardID] === undefined)
+        ? [id]
+        : [
+          ...state.boardLists[action.boardID],
+          id
+        ];
+
+      return produce(state, draft => {
+        draft.addingList = false
+        draft.boardLists[action.boardID] = boardLists
+        draft.lists[id] = {
+          name: action.input,
+          taskIDs: []
         }
-      }
+      })
 
     case 'CREATE_NEW_TASK':
       let taskId = nanoid(4);
       let newState = {};
-      Object.keys(state.lists).map(oneList => {
+      Object.keys(state.lists).forEach(oneList => {
         if (oneList === action.id) {
-          newState = {
-            ...state,
-            tasks: {
-              ...state.tasks,
-              [taskId]: {
-                id: taskId,
-                content: action.input,
-                checked: false
-              }
-            },
-            lists: {
-              ...state.lists,
-              [oneList]: {
-                ...state.lists[oneList],
-                taskIDs: [
-                  ...state.lists[oneList].taskIDs,
-                  taskId
-                ]
-              }
+          newState = produce(state, draft => {
+            draft.tasks[taskId] = {
+              id: taskId,
+              content: action.input,
+              checked: false
             }
-          }
+            draft.lists[oneList].taskIDs.push(taskId)
+          })
         }
         return null;
       })
       return newState;
 
     case 'TASK_CHECKED':
-      let stateWithNewTasks ={}
-        Object.keys(state.tasks).map(oneTask => {
-          if (oneTask === action.taskID) {
-            stateWithNewTasks = {
-              ...state,
-              tasks: {
-                ...state.tasks,
-                [oneTask]: {
-                  ...state.tasks[oneTask],
-                  checked: !state.tasks[oneTask].checked
-                }
-              },
-            }
-          }
-          return null;
-        })
+      let stateWithNewTasks = {}
+      Object.keys(state.tasks).forEach(oneTask => {
+        if (oneTask === action.taskID) {
+          stateWithNewTasks = produce(state, draft => {
+            draft.tasks[oneTask].checked = !draft.tasks[oneTask].checked
+          })
+        }
+        return null;
+      })
       return stateWithNewTasks;
 
     default:

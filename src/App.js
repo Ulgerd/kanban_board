@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { createNewBoard } from './actions/titlePageActions'
+import { createNewBoard, deleteBoard } from './actions/titlePageActions'
 import TitlePage from './components/title_page';
 import Board from './components/board';
 import NoPage from './components/nopage';
-import './css/App.css';
+import './assets/css/App.css';
 
 class App extends Component {
   render() {
@@ -20,6 +20,7 @@ class App extends Component {
               render={ ({ match }) =>
                 <TitlePage
                   createNewBoard = {this.props.createNewBoard}
+                  deleteBoard = {this.props.deleteBoard}
                   boards = {this.props.boards}
                 />
               }
@@ -51,6 +52,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => ({
     createNewBoard: (input, boardColor) => dispatch(createNewBoard(input, boardColor)),
+    deleteBoard: (boardID) => dispatch(deleteBoard(boardID))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (App);
