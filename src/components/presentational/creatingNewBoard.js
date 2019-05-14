@@ -20,7 +20,7 @@ export default function CreatingNewBoard(props) {
 
   return (
     <div className='creatingNewBoard'>
-
+    
         <div className='creatingNewBoard_header no_select'>
           <div>Creating a board</div>
             <Icon

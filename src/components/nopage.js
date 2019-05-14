@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './header.js';
+import Header from './presentational/header.js';
 import '../assets/css/nopage.css';
 
 export default function NoPage() {

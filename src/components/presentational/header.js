@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Icons from '../assets/icons/icons.svg';
+import Icons from '../.././assets/icons/icons.svg';
 
 export default function Header() {
   return (

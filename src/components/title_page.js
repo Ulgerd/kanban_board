@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
-import Header from './header.js';
-import {confirmAlert} from 'react-confirm-alert'; // Import
-import CreatingNewBoard from './creatingNewBoard.js';
-import Icon from './icon.js';
-import '../assets/css/confirm.css'; // Import css
+import {confirmAlert} from 'react-confirm-alert';
+import Header from './presentational/header.js';
+import CreatingNewBoard from './presentational/creatingNewBoard.js';
+import Icon from './presentational/icon.js';
+import '../assets/css/confirm.css'; 
 
 export default function TitlePage(props) {
   const [menuOpen, setMenuOpen] = useState(false);

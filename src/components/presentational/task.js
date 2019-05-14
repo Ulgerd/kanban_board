@@ -1,6 +1,5 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd'
-import Icon from './icon.js';
 
 export default function Task(props) {
 
