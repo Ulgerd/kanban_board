@@ -4,7 +4,7 @@ import {confirmAlert} from 'react-confirm-alert';
 import Header from './presentational/header.js';
 import CreatingNewBoard from './presentational/creatingNewBoard.js';
 import Icon from './presentational/icon.js';
-import '../assets/css/confirm.css'; 
+import '../assets/css/confirm.css';
 
 export default function TitlePage(props) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -65,7 +65,7 @@ export default function TitlePage(props) {
           className='navLink'
         >
           <Icon
-            name='XButton boardX'
+            name='boardX'
             onClick = {(e) => {e.preventDefault(); submit(props.boards[key].id)}}
             fill='black'
             width='1em'

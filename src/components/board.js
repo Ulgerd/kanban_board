@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {DragDropContext} from 'react-beautiful-dnd'
 import {connect} from 'react-redux';
-import {updateTasks, onDrag} from "./utils/deleteTasks.js";
+import {updateTasks} from "./utils/updateTasks.js";
+import {onDrag} from "./utils/onDrag.js";
 import AddingList from "./presentational/addingList.js";
 import Header from './presentational/header.js';
 import List from './presentational/list.js';
@@ -28,7 +29,9 @@ function Board(props) {
 
   const onDragEnd = result => {
     let newState = onDrag(result, props.lists)
-    props.updateListsAfterDragEnd(newState)
+    if (newState !== undefined) {
+      props.updateListsAfterDragEnd(newState)
+    }
   }
 
   return (

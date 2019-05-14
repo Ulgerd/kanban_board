@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Icon from './icon.js';
+import '../.././assets/css/creatingNewBoard.css';
 
 export default function CreatingNewBoard(props) {
   const [input, setInput] = useState('');
@@ -20,7 +21,7 @@ export default function CreatingNewBoard(props) {
 
   return (
     <div className='creatingNewBoard'>
-    
+
         <div className='creatingNewBoard_header no_select'>
           <div>Creating a board</div>
             <Icon
@@ -32,18 +33,19 @@ export default function CreatingNewBoard(props) {
         <hr size="1" color="#105B75"></hr>
 
         <div className='creatingNewBoard_body no_select'>
-          <div>What shall we call the board?</div>
+          <div className='creatingNewBoard_body_title no_select'>What shall we call the board?</div>
           <input
+            className='creatingNewBoard_body_input no_select'
             onChange={(e) => setInput(e.target.value)}
             value={input}
             onKeyPress={onEnter}
             maxLength="15"
           />
 
-          <label>
+          <label className='creatingNewBoard_body_label no_select'>
             Choose the board's theme:
           </label>
-          <select onChange={(e) => setBoardColor(e.target.value)}>
+          <select onChange={(e) => setBoardColor(e.target.value)} className='creatingNewBoard_body_select no_select'>
             <option value="1">Marble</option>
             <option value="2">Winter</option>
             <option value="3">Blu</option>

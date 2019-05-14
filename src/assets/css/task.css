@@ -1,0 +1,39 @@
+.task_wrapper {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  padding: 1em 0.5em 0;
+  min-height: 1em;
+  background-color: lightgray;
+  border: 1px solid black;
+  border-top: none;
+  border-radius: 0 0 15px 15px;
+
+}
+
+.task {
+  border: 1px solid black;
+  border-radius: 9px;
+  width: 100%;
+  min-height: 1.5em;
+  background-color: rgb(230, 230, 230);
+  margin-bottom: 0.3em;
+  cursor: pointer;
+  box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
+  overflow: hidden;
+  font-family: "Times";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.task_X {
+  position: absolute;
+  margin-top: -1.6em;
+  margin-left: 13em;
+}
+
+._checked {
+  background-color: rgb(185, 0, 0);
+  text-decoration: line-through;
+}

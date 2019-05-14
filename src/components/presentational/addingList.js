@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import '../.././assets/css/addingList.css';
 
 export default function AddingList(props) {
 

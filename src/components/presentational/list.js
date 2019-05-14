@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import { Droppable } from 'react-beautiful-dnd'
 import Task from './task';
 import Dropdown from './dropdown.js';
-import '../../assets/css/confirm.css'; // Import css
+import '../../assets/css/confirm.css'; 
+import '../.././assets/css/list.css';
 
 export default function List(props) {
 

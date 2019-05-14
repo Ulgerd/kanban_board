@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {confirmAlert} from 'react-confirm-alert'; // Import
 import Icon from './icon.js';
+import '../.././assets/css/dropdown.css';
 
 export default function Dropdown(props) {
   const [dropdown, setDropdown] = useState(false);
@@ -35,7 +36,7 @@ export default function Dropdown(props) {
       <Icon
         name = 'arrow_up'
         onClick = {() => setDropdown(false)}
-        fill='black'
+        fill='lightblue'
         width='1em'
         height="1em"
         xlink = 'arrow_up'
@@ -53,20 +54,20 @@ export default function Dropdown(props) {
       dropdown ?
       <div className='dropdown'>
         <div
-          className='dropdown_menu_item'
-          onClick={props.setAddingTask}
+          className='dropdown_menu_item_upper no_select'
+          onClick={() => {setDropdown(false); props.setAddingTask()}}
         >
           Add new task
         </div>
         <div
-          className='dropdown_menu_item'
+          className='dropdown_menu_item no_select'
           onClick={submit}
         >
           Delete this list
         </div>
         <div
-          className='dropdown_menu_item'
-          onClick={props.deleteTasks}
+          className='dropdown_menu_item_lower no_select'
+          onClick={() => {setDropdown(false); props.deleteTasks()}}
         >
           Delete checked tasks
         </div>

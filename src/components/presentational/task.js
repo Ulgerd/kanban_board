@@ -1,5 +1,6 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd'
+import '../.././assets/css/task.css';
 
 export default function Task(props) {
 
