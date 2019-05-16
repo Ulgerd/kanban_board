@@ -5,7 +5,7 @@ import {updateTasks} from "./utils/updateTasks.js";
 import {onDrag} from "./utils/onDrag.js";
 import AddingList from "./presentational/addingList.js";
 import Header from './presentational/header.js';
-import List from './presentational/list.js';
+import List from './list.js';
 import {
   createNewList,
   createNewTask,

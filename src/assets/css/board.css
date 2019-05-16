@@ -26,7 +26,7 @@
 
 @media (max-width: 700px) {
   .board {
-    padding: 0.5em 1.5em 0;
+    padding: 0 1.5em;
   }
 
   .boardName, .list_wrapper {
@@ -40,7 +40,7 @@
 
 @media (min-width: 700px) and (max-width: 999px) {
   .board {
-    padding: 0.5em 1.5em 0;
+    padding: 0 1.5em;
   }
 
   .boardName, .list_wrapper {
@@ -52,7 +52,7 @@
 
 @media (min-width: 1000px) and (max-width: 1399px) {
   .board {
-    padding: 0.5em 1.5em 0;
+    padding: 0 1.5em;
   }
 
   .boardName {
@@ -73,7 +73,7 @@
 
 @media (min-width: 1400px) {
   .board {
-    padding: 0.5em 1.5em 0;
+    padding: 0 1.5em;
   }
 
   .boardName {
@@ -88,7 +88,7 @@
 }
 
 .board {
-  padding: 0.5em 1.5em 0;
+    padding: 0 1.5em;
 }
 
 .boardName {

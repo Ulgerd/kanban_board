@@ -1,0 +1,62 @@
+.create_task_input {
+  width: 80%;
+  height: 2rem;
+  margin: 1em auto 0;
+  border: 2px solid gray;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
+  outline: none;
+  font-family: "Times";
+}
+
+.task_add_button {
+  width: 40%;
+  height: 2rem;
+  margin-top: 1em;
+  border-radius: 9px;
+  font-size: 1em;
+  outline: none;
+  color: white;
+  background-color: rgb(156, 149, 145);
+  box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
+  font-family: "Times";
+  font-weight: bold;
+}
+
+.task_add_button:active {
+  outline: none;
+  border-radius: 9px;
+}
+
+.task_add_button:disabled {
+  color: gray;
+  box-shadow: none;
+}
+
+.task_cancel_button {
+  width: 40%;
+  height: 24%;
+  margin-top: 1em;
+  margin-right: 0.2em;
+  height: 1.8rem;
+  border: none;
+  font-size: 1em;
+  color: rgb(25, 25, 25);
+  background-color: rgb(210, 210, 210);
+  outline: none;
+  font-family: "Times";
+  font-weight: bold;
+}
+
+.task_cancel_button:hover {
+    background-color: rgb(178, 67, 44);
+    box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
+    border-radius: 9px;
+}
+
+.task_cancel_button:active {
+    background-color: rgb(178, 67, 44);
+    border-radius: 9px;
+    box-shadow: none;
+}

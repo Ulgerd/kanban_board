@@ -66,7 +66,7 @@
 .creatingNewBoard_body_input {
   min-height: 2em;
   outline: none;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   grid-column: 1/3;
   border-radius: 6px;
   background-color: rgb(220, 220, 220);
@@ -81,7 +81,7 @@
   grid-column: 1/3;
   width: 100%;
   height: 1.6em;
-  font-size: 1em;
+  font-size: 0.9rem;
   font-family: "Times";
   padding-left: 3px;
   background-color: rgb(220, 220, 220);
@@ -99,11 +99,12 @@
   background-color: inherit;
   border: none;
   color: white;
-  height: 2.3em;
+  min-height: 1.7rem;
   grid-column: 1/2;
   margin: 0.5rem 0;
   border-radius: 0.3em;
   outline: none;
+  font-size: 0.8rem;
 }
 
 .cancelButton:hover {
@@ -112,13 +113,14 @@
 }
 
 .createButton {
-  border: none;
   background-color: rgb(220, 220, 220);
+  border: none;
   min-height: 1.7rem;
   grid-column: 2/3;
   margin: 0.5rem 0;
   border-radius: 0.3em;
   outline: none;
+  font-size: 0.8rem;
 
 }
 

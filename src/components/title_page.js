@@ -5,6 +5,7 @@ import Header from './presentational/header.js';
 import CreatingNewBoard from './presentational/creatingNewBoard.js';
 import Icon from './presentational/icon.js';
 import '../assets/css/confirm.css';
+import '../assets/css/titlePage.css';
 
 export default function TitlePage(props) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -67,7 +68,7 @@ export default function TitlePage(props) {
           <Icon
             name='boardX'
             onClick = {(e) => {e.preventDefault(); submit(props.boards[key].id)}}
-            fill='black'
+            fill='rgb(50, 50, 50)'
             width='1em'
             height="1em"
             xlink='close'
