@@ -1,4 +1,4 @@
-import produce from "immer";
+import {updateLists} from "./updateLists.js";
 
 export const updateTasks = (tasks, lists, listID) => {
 
@@ -15,17 +15,14 @@ export const updateTasks = (tasks, lists, listID) => {
     return null;
   })
 
-  let tasksToDelete = checkedTasks.filter((task) => lists[listID].taskIDs.indexOf(task) >= 0);
+  let tasksToDelete = checkedTasks.filter((task) =>
+    lists[listID].taskIDs.indexOf(task) >= 0);
 
   tasksToDelete.forEach(task => {
     delete newTasks[task];
   })
 
-  let newTaskIDs = lists[listID].taskIDs.filter((task) => tasksToDelete.indexOf(task) < 0);
-
-  let newLists = produce(lists, draft => {
-    draft[listID].taskIDs = newTaskIDs;
-  })
+  let newLists = updateLists(tasksToDelete, lists, listID);
 
   return [newLists, newTasks]
 }

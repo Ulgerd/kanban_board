@@ -11,19 +11,12 @@ export const initialState = {
 export function boardReducer(state = initialState, action) {
   switch (action.type) {
     case 'DELETE_LIST':
-
-      let currentBoardLists = [...state.boardLists[action.boardID]].filter(
-        item => item !== action.listID
-      )
-
-      let newLists = {
-        ...state.lists
-      };
-      delete newLists[action.listID];
-
       return produce(state, draft => {
-        draft.lists = newLists;
-        draft.boardLists[action.boardID] = [...currentBoardLists]
+        let bL = draft.boardLists[action.boardID];
+        bL.splice(bL.findIndex(id =>
+          id === action.listID), 1
+        ); // https://github.com/immerjs/immer/issues/115
+        delete draft.lists[action.listID];
       })
 
     case 'UPDATE_LISTS':
@@ -42,10 +35,8 @@ export function boardReducer(state = initialState, action) {
 
       let boardLists = (state.boardLists[action.boardID] === undefined)
         ? [id]
-        : [
-          ...state.boardLists[action.boardID],
-          id
-        ];
+        : [...state.boardLists[action.boardID],
+           id];
 
       return produce(state, draft => {
         draft.addingList = false

@@ -18,13 +18,8 @@ export function titlePageReducer(state = initialState, action) {
       })
 
     case 'DELETE_BOARD':
-      let newBoards = {
-        ...state.boards
-      };
-      delete newBoards[action.boardID];
-
       return produce(state, draft => {
-        draft.boards = newBoards
+        delete draft.boards[action.boardID];
       })
 
     default:

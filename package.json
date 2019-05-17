@@ -15,7 +15,7 @@
     "react-scripts": "2.1.8",
     "react-sortablejs": "^1.5.1",
     "redux": "^4.0.1",
-    "redux-localstorage-simple": "^2.1.6"
+    "redux-sessionstorage": "^0.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

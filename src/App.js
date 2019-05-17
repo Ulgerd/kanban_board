@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { createNewBoard, deleteBoard } from './actions/titlePageActions'
-import TitlePage from './components/title_page';
+import TitlePage from './components/titlePage';
 import Board from './components/board';
 import NoPage from './components/nopage';
 import './assets/css/App.css';
 
 class App extends Component {
   render() {
+    let {createNewBoard, deleteBoard, boards} = this.props;
     return (
       <Router>
         <div className='App'>
@@ -19,19 +19,19 @@ class App extends Component {
               exact path='/'
               render={ ({ match }) =>
                 <TitlePage
-                  createNewBoard = {this.props.createNewBoard}
-                  deleteBoard = {this.props.deleteBoard}
-                  boards = {this.props.boards}
+                  createNewBoard = {createNewBoard}
+                  deleteBoard = {deleteBoard}
+                  boards = {boards}
                 />
               }
             />
 
             {
-              Object.keys(this.props.boards).map(oneBoard =>
+              Object.keys(boards).map(oneBoard =>
                 <Route
-                  key = {this.props.boards[oneBoard].id}
+                  key = {boards[oneBoard].id}
                   exact path={`/board/${this.props.boards[oneBoard].id}`}
-                  render={ () => <Board board = {this.props.boards[oneBoard]} />}
+                  render={ () => <Board board = {boards[oneBoard]} />}
                 />
               )
             }

@@ -1,7 +1,9 @@
-import { applyMiddleware, createStore } from 'redux';
-import { save, load, clear } from 'redux-localstorage-simple';
+import {compose, createStore} from 'redux';
+import persistState from 'redux-sessionstorage'
 import { rootReducer } from './reducers/rootReducer';
 
-const createStoreWithMiddleware = applyMiddleware( save() )( createStore );
+const createPersistentStore = compose(
+  persistState()
+)(createStore)
 
-export const store = createStoreWithMiddleware( rootReducer, load() );
+export const store = createPersistentStore(rootReducer, {})

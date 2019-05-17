@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {DragDropContext} from 'react-beautiful-dnd'
 import {connect} from 'react-redux';
-import {updateTasks} from "./utils/updateTasks.js";
-import {onDrag} from "./utils/onDrag.js";
+import {updateTasks} from "../utils/updateTasks.js";
+import {onDrag} from "../utils/onDrag.js";
 import AddingList from "./presentational/addingList.js";
 import Header from './presentational/header.js';
 import List from './list.js';
