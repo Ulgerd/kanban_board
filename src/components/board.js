@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {DragDropContext} from 'react-beautiful-dnd'
 import {connect} from 'react-redux';
-import {updateTasks} from "../utils/updateTasks.js";
 import {onDrag} from "../utils/onDrag.js";
 import AddingList from "./presentational/addingList.js";
 import List from './list.js';
@@ -9,10 +8,11 @@ import {
   createNewList,
   createNewTask,
   updateListsAfterDragEnd,
-  taskChecked,
   updateListsAndTasksDragEnd,
   deleteList,
   changeListName,
+  editTask,
+  deleteTask
 } from '../actions/boardActions'
 import '../assets/css/board.css';
 
@@ -21,11 +21,6 @@ function Board(props) {
   useEffect(() => {
     document.title = `Board ${props.board.name}`;
   });
-
-  const deleteTasks = (listID) => {
-    let tasks = updateTasks(props.tasks, props.lists, listID);
-    props.updateListsAndTasksDragEnd(tasks[0], tasks[1])
-  }
 
   const onDragEnd = result => {
     let newState = onDrag(result, props.lists)
@@ -57,9 +52,9 @@ function Board(props) {
                     name={list.name}
                     tasks={tasks}
                     onCreateNewChild={props.createNewTask}
-                    taskChecked={props.taskChecked}
                     deleteList={props.deleteList}
-                    deleteTasks={deleteTasks}
+                    editTask={(taskID,input)=> props.editTask(taskID,input)}
+                    deleteTask={(taskID, listID)=> props.deleteTask(taskID, listID)}
                     changeListName={(input) => props.changeListName(listID, input)}
                   />
                 )
@@ -80,9 +75,10 @@ const mapDispatchToProps = dispatch => ({
   createNewTask: (id, input) => dispatch(createNewTask(id, input)),
   updateListsAfterDragEnd: (newLists) => dispatch(updateListsAfterDragEnd(newLists)),
   updateListsAndTasksDragEnd: (newLists, newTasks) => dispatch(updateListsAndTasksDragEnd(newLists, newTasks)),
-  taskChecked: (id) => dispatch(taskChecked(id)),
   deleteList: (id, boardID) => dispatch(deleteList(id, boardID)),
   changeListName: (listID, input) => dispatch(changeListName(listID, input)),
+  editTask: (taskID, input) => dispatch(editTask(taskID, input)),
+  deleteTask: (taskID, listID) => dispatch(deleteTask(taskID, listID)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

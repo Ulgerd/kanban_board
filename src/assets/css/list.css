@@ -52,10 +52,13 @@
   outline: none;
 }
 
-.listXButton {
+.list_X {
   position: absolute;
-  margin: 1.5% 91%;
-  outline: none;
+  margin-left: 90%;
+  margin-top: -18%;
+  z-index: 30;
+  width: 0.9em;
+  height: 0.9em;
 }
 
 .task_wrapper {

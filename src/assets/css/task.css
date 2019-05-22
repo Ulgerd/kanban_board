@@ -21,9 +21,21 @@
   border-right: 1px solid black;
 }
 
-.task_menu {
+.task_name_input {
+  background-color: rgb(229, 229, 229);
+  height: 2.2em;
+  width: 85%;
+  border: none;
+  outline: none;
+  border-right: 1px solid black;
+  padding: 0.15em 1em;
+  font-size: 0.8em;
+}
+
+.task_menu, .task_menu_open {
   width: 15%;
   align-self: center;
+  z-index: 30;
 }
 
 .task_menu:hover {
@@ -36,7 +48,15 @@
   margin-left: 13em;
 }
 
-._checked {
-  background-color: rgb(185, 0, 0);
-  text-decoration: line-through;
+.task_menu_open:after {
+  background: transparent;
+  bottom: 0;
+  content: " ";
+  cursor: default;
+  display: block;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 20;
 }

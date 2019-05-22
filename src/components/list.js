@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { Droppable } from 'react-beautiful-dnd'
+import {confirmAlert} from 'react-confirm-alert'; // Import
 import Task from './presentational/task';
-import Dropdown from './presentational/dropdown.js';
+import Icon from './presentational/icon.js';
 import AddingTask from './presentational/addingTask.js';
 import '../assets/css/confirm.css';
 import '../assets/css/list.css';
@@ -11,6 +12,30 @@ export default function List(props) {
   const [addingTask, setAddingTask] = useState(false);
   const [input, setInput] = useState(props.name);
   const [changingListName, setChangingListName] = useState(false);
+
+  const submit = () => {
+    confirmAlert({
+      customUI: ({onClose}) => {
+        return (
+          <div className='react-confirm-alert'>
+            <div className='react-confirm-alert-body'>
+              <h1>List removal</h1>
+              <h3>Are you sure you want to delete this list?</h3>
+              <div className='react-confirm-alert-button-group'>
+                <button onClick={onClose}>No</button>
+                <button onClick={() => {
+                  props.deleteList(props.id, props.boardID);
+                  onClose()
+                }}>
+                  Yes, Delete it!
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      }
+    });
+  }
 
   const onEnter = (e) => {
     if (e.key === 'Enter' && input !== '') {
@@ -39,10 +64,13 @@ export default function List(props) {
               </div> :
               <div className='list_header_pointer'>{props.name}</div>
             }
-
-            <Dropdown
-              deleteList = {() => props.deleteList(props.id, props.boardID)}
-              deleteTasks = {() => props.deleteTasks(props.id)}
+            <Icon
+              name = 'list_X'
+              onClick = {submit}
+              fill='rgb(239, 239, 239)'
+              width='0.9em'
+              height="0.9em"
+              xlink = 'close'
             />
           </div>
           {addingTask ?
@@ -73,10 +101,12 @@ export default function List(props) {
                       key={task.id}
                     >
                       <Task
-                        onClick={() => props.taskChecked(task.id)}
                         task={task}
+                        taskID = {task.id}
                         index={index}
                         listID = {props.id}
+                        editTask = {(taskID, input) => {props.editTask(taskID, input)}}
+                        deleteTask={(taskID, listID) => {props.deleteTask(taskID, listID)}}
                       />
                     </div>
                   ))}

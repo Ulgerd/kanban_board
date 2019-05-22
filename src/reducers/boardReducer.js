@@ -16,6 +16,12 @@ export function boardReducer(state = initialState, action) {
         bL.splice(bL.findIndex(id =>
           id === action.listID), 1
         ); // Why splice? Here's the answer: https://github.com/immerjs/immer/issues/115
+        let arr = draft.lists[action.listID].taskIDs;
+
+        arr.forEach(task => {
+          delete draft.tasks[task];
+        })
+
         delete draft.lists[action.listID];
       })
 
@@ -25,10 +31,9 @@ export function boardReducer(state = initialState, action) {
       })
 
     case 'CHANGE_LIST_NAME':
-      let a = produce(state, draft => {
+      return produce(state, draft => {
         draft.lists[action.listID].name = action.input
       })
-      return a;
 
     case 'UPDATE_LISTS_AND_TASKS':
       return produce(state, draft => {
@@ -61,7 +66,6 @@ export function boardReducer(state = initialState, action) {
             draft.tasks[taskId] = {
               id: taskId,
               content: action.input,
-              checked: false
             }
             draft.lists[oneList].taskIDs.push(taskId)
           })
@@ -70,17 +74,24 @@ export function boardReducer(state = initialState, action) {
       })
       return newState;
 
-    case 'TASK_CHECKED':
-      let stateWithNewTasks = {}
-      Object.keys(state.tasks).forEach(oneTask => {
-        if (oneTask === action.taskID) {
-          stateWithNewTasks = produce(state, draft => {
-            draft.tasks[oneTask].checked = !draft.tasks[oneTask].checked
+    case 'EDIT_TASK':
+      return produce(state, draft => {
+        draft.tasks[action.taskID].content = action.input
+      })
+
+    case 'DELETE_TASK':
+      Object.keys(state.lists).forEach(oneList => {
+        if (oneList === action.listID) {
+          newState = produce(state, draft => {
+            delete draft.tasks[action.taskID]
+            draft.lists[oneList].taskIDs = draft.lists[oneList].taskIDs.filter((task) =>
+              task !== action.taskID
+            )
           })
         }
         return null;
       })
-      return stateWithNewTasks;
+      return newState;
 
     default:
       return state

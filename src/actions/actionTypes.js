@@ -7,3 +7,5 @@ export const UPDATE_LISTS_AND_TASKS = 'UPDATE_LISTS_AND_TASKS';
 export const DELETE_LIST = 'DELETE_LIST';
 export const DELETE_BOARD = 'DELETE_BOARD';
 export const CHANGE_LIST_NAME = 'CHANGE_LIST_NAME';
+export const EDIT_TASK = 'EDIT_TASK';
+export const DELETE_TASK = 'DELETE_TASK';

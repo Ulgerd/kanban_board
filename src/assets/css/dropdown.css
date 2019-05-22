@@ -1,48 +1,15 @@
-.gear_clicked, .gear_toClick {
-  position: absolute;
-  margin-left: 90%;
-  margin-top: -18%;
-  z-index: 30;
-  width: 0.9em;
-  height: 0.9em;
-}
-
-.gear_clicked:after {
-  background: transparent;
-  bottom: 0;
-  content: " ";
-  cursor: default;
-  display: block;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 20;
-}
-
-.gear_toClick :hover{
-  fill: lightblue;
-  cursor: pointer;
-  transform-origin: 50% 50%;
-  -moz-transform: rotate(15deg); /* Для Firefox */
-  -ms-transform: rotate(15deg); /* Для IE */
-  -webkit-transform: rotate(15deg); /* Для Safari, Chrome, iOS */
-  -o-transform: rotate(15deg); /* Для Opera */
-  transform: rotate(15deg);
-  transition: 0.1s;
-}
-
 .dropdown{
   position: absolute;
   font-size: 0.7em;
-  margin-left: 10em;
+  margin-top: 2.5em;
+  margin-left: -2em;
   width: 11em;
   border: 1px solid black;
   border-radius: 6px;
   text-shadow: none;
   background-color: rgb(229, 229, 229);
   color: black;
-  z-index: 30;
+  z-index: 31;
   font-family: 'Heebo', sans-serif;
 }
 

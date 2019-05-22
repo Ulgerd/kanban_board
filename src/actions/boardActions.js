@@ -2,10 +2,11 @@ import {
   CREATE_NEW_LIST,
   CREATE_NEW_TASK,
   UPDATE_LISTS,
-  TASK_CHECKED,
   UPDATE_LISTS_AND_TASKS,
   DELETE_LIST,
-  CHANGE_LIST_NAME
+  CHANGE_LIST_NAME,
+  EDIT_TASK,
+  DELETE_TASK
  } from './actionTypes';
 
 export function createNewList(input, boardID) {
@@ -39,10 +40,19 @@ export function updateListsAfterDragEnd(newLists) {
   }
 }
 
-export function taskChecked(taskID) {
+export function editTask(taskID, input) {
   return {
-    type: TASK_CHECKED,
-    taskID
+    type: EDIT_TASK,
+    taskID,
+    input,
+  }
+}
+
+export function deleteTask(taskID, listID) {
+  return {
+    type: DELETE_TASK,
+    taskID,
+    listID
   }
 }
 
