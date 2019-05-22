@@ -29,7 +29,7 @@
 }
 
 .add_a_list:hover {
-  color: rgba(0,0,0,0.6);
+  color: white;
   transform: scale(1.04, 1.04);
 }
 
