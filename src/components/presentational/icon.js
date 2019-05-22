@@ -8,6 +8,7 @@ export default function Icon(props) {
         onClick={props.onClick ? (e) => props.onClick(e) : null}
       >
         <svg
+          className={'pointer'}
           fill= {props.fill || 'white'}
           width={props.width || '25'}
           height={props.height || '25'}

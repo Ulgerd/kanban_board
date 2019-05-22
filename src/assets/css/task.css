@@ -1,17 +1,33 @@
-.task {
+.task_content {
   border: 1px solid black;
   border-radius: 9px;
-  width: 100%;
   min-height: 1.5em;
   background-color: rgb(230, 230, 230);
   margin-bottom: 0.3em;
-  cursor: pointer;
-  box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
+  font-family: 'Heebo', sans-serif;
   overflow: hidden;
-  font-family: "Times";
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 100%;
   justify-content: center;
+  margin: 0.3em 0;
+  box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
+}
+
+.task {
+  width: 85%;
+  height: 100%;
+  padding: 0.15em 0;
+  border-right: 1px solid black;
+}
+
+.task_menu {
+  width: 15%;
+  align-self: center;
+}
+
+.task_menu:hover {
+  cursor: pointer;
 }
 
 .task_X {

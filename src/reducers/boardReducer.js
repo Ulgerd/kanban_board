@@ -15,7 +15,7 @@ export function boardReducer(state = initialState, action) {
         let bL = draft.boardLists[action.boardID];
         bL.splice(bL.findIndex(id =>
           id === action.listID), 1
-        ); // https://github.com/immerjs/immer/issues/115
+        ); // Why splice? Here's the answer: https://github.com/immerjs/immer/issues/115
         delete draft.lists[action.listID];
       })
 
@@ -23,6 +23,12 @@ export function boardReducer(state = initialState, action) {
       return produce(state, draft => {
         draft.lists = action.newLists
       })
+
+    case 'CHANGE_LIST_NAME':
+      let a = produce(state, draft => {
+        draft.lists[action.listID].name = action.input
+      })
+      return a;
 
     case 'UPDATE_LISTS_AND_TASKS':
       return produce(state, draft => {
@@ -39,7 +45,6 @@ export function boardReducer(state = initialState, action) {
            id];
 
       return produce(state, draft => {
-        draft.addingList = false
         draft.boardLists[action.boardID] = boardLists
         draft.lists[id] = {
           name: action.input,

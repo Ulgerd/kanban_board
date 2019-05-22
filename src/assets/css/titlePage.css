@@ -5,45 +5,34 @@
 }
 
 .createNewBoard {
-  font-family: "Times";
-  font-weight: bold;
+  font-family: 'Heebo', sans-serif;
   position: relative;
   display: inline-block;
-  height: 100%;
-  width: 80%;
-  line-height: 2.4em;
+  cursor: pointer;
+  font-size: 1.3rem;
+  height: 3em;
+  width: 10em;
+  transition: 1s;
+  padding: 0.8em 0;
   vertical-align: middle;
   text-align: center;
   text-decoration: none;
   user-select: none;
-  color: rgb(40, 40, 40);
+  color: rgb(235, 235, 235);
   outline: none;
   border: 1px solid rgba(110,121,128,.8);
   border-top-color: rgba(0,0,0,.3);
   border-radius: 5px;
-  background: rgb(206, 220, 231) linear-gradient(rgb(206,220,231), rgb(89,106,114));
-  box-shadow:
-   0 -1px rgba(10,21,28,.9) inset,
-   0 1px rgba(255,255,255,.5) inset;
+  background: rgb(192, 190, 186) linear-gradient(rgb(192, 190, 186), rgb(120, 112, 110));
 }
 .createNewBoard:hover {
-  background: linear-gradient(#d2dfea, #71828c);
+  background: linear-gradient(rgb(216, 215, 213), rgb(150, 142, 140));
 }
 
 .createNewBoard:active {
-  line-height: 2.6em;
-  background: linear-gradient(#bac6cf, #c5d3de 20%, #71828c);
+  background: linear-gradient(rgb(192, 190, 186), rgb(120, 112, 110));
   box-shadow: 0 -1px rgba(255,255,255,.4) inset;
 }
-
-.createNewBoard:before {
-  content: "";
-  position: absolute;
-  top: -10px; right: -10px; bottom: -10px; left: -10px;
-  z-index: -1;
-  border-radius: 8px;
-  background: linear-gradient(rgba(200,200,200,0.7), rgba(240,240,240,0.7));
- }
 
 .board_elem {
   font-size: 1.3rem;
@@ -55,8 +44,7 @@
   box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.2), 5px 5px 5px 0 rgba(0,0,0,0.2);
   text-shadow: 4px 1px 2px rgba(150, 150, 150, 1);
   transition: 0.4s;
-  font-family: "Times";
-  font-weight: bold;
+  font-family: 'Heebo', sans-serif;
 }
 
 .board_elem:hover {
@@ -68,20 +56,20 @@
 }
 
  .board_1 {
-   background-color: #b9b6be;
+   background-color: #aab0b9;
    /* IE9, iOS 3.2+ */
-   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNDEuNDIxMzU2MjM3MzA5NSUiPjxzdG9wIHN0b3AtY29sb3I9IiM5Yjk5YTIiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2ExYTBhOSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuMTczMDAwMDAwMDAwMDAwMDEiLz48c3RvcCBzdG9wLWNvbG9yPSIjZWZlOGYwIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMC41NDc5OTk5OTk5OTk5OTk5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iI2E1YTdhYyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNzkiLz48c3RvcCBzdG9wLWNvbG9yPSIjOWI5OWEyIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iLTUwIiB5PSItNTAiIHdpZHRoPSIxMDEiIGhlaWdodD0iMTAxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNDEuNDIxMzU2MjM3MzA5NSUiPjxzdG9wIHN0b3AtY29sb3I9IiNiZmQwZDYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzk1OGY5YyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNTc1Ii8+PHN0b3Agc3RvcC1jb2xvcj0iI2MxZDFkNyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L3JhZGlhbEdyYWRpZW50PjxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=);
    /* Android 2.3- hack (needed for the actual radial gradient) */
-   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNDEuNDIxMzU2MjM3MzA5NSUiPjxzdG9wIHN0b3AtY29sb3I9IiM5Yjk5YTIiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2ExYTBhOSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuMTczMDAwMDAwMDAwMDAwMDEiLz48c3RvcCBzdG9wLWNvbG9yPSIjZWZlOGYwIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMC41NDc5OTk5OTk5OTk5OTk5Ii8+PHN0b3Agc3RvcC1jb2xvcj0iI2E1YTdhYyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNzkiLz48c3RvcCBzdG9wLWNvbG9yPSIjOWI5OWEyIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iLTUwIiB5PSItNTAiIHdpZHRoPSIxMDEiIGhlaWdodD0iMTAxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==),
-       -webkit-gradient(radial, left top, 0, left top, 723,color-stop(0, rgb(155, 153, 162)),color-stop(0.173, rgb(161, 160, 169)),color-stop(0.548, rgb(239, 232, 240)),color-stop(0.79, rgb(165, 167, 172)),color-stop(1, rgb(155, 153, 162)));
+   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjAlIiByPSIxNDEuNDIxMzU2MjM3MzA5NSUiPjxzdG9wIHN0b3AtY29sb3I9IiNiZmQwZDYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzk1OGY5YyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNTc1Ii8+PHN0b3Agc3RvcC1jb2xvcj0iI2MxZDFkNyIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L3JhZGlhbEdyYWRpZW50PjxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=),
+       -webkit-gradient(radial, left top, 0, left top, 723,color-stop(0, rgb(191, 208, 214)),color-stop(0.575, rgb(149, 143, 156)),color-stop(1, rgb(193, 209, 215)));
    /* Android 2.3 */
-   background-image: -webkit-radial-gradient(left top, ellipse farthest-corner,rgb(155, 153, 162) 0%,rgb(161, 160, 169) 17.3%,rgb(239, 232, 240) 54.8%,rgb(165, 167, 172) 79%,rgb(155, 153, 162) 100%);
+   background-image: -webkit-repeating-radial-gradient(left top, ellipse farthest-corner,rgb(191, 208, 214) 0%,rgb(149, 143, 156) 57.5%,rgb(193, 209, 215) 100%);
    /* IE10+ */
-   background-image: radial-gradient(ellipse farthest-corner at left top,rgb(155, 153, 162) 0%,rgb(161, 160, 169) 17.3%,rgb(239, 232, 240) 54.8%,rgb(165, 167, 172) 79%,rgb(155, 153, 162) 100%);
-   background-image: -ms-radial-gradient(left top, ellipse farthest-corner,rgb(155, 153, 162) 0%,rgb(161, 160, 169) 17.3%,rgb(239, 232, 240) 54.8%,rgb(165, 167, 172) 79%,rgb(155, 153, 162) 100%);
+   background-image: repeating-radial-gradient(ellipse farthest-corner at left top,rgb(191, 208, 214) 0%,rgb(149, 143, 156) 57.5%,rgb(193, 209, 215) 100%);
+   background-image: -ms-repeating-radial-gradient(left top, ellipse farthest-corner,rgb(191, 208, 214) 0%,rgb(149, 143, 156) 57.5%,rgb(193, 209, 215) 100%);
 
-   color: rgba(0,0,0,0.6);
- 	text-shadow: 2px 6px 6px rgba(0,0,0,0.2),
+   color: white;
+   text-shadow: 2px 6px 6px rgba(0,0,0,0.2),
                 0px -5px 35px rgba(255,255,255,0.3);
 }
 
@@ -171,7 +159,6 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  font-style: oblique;
   color: inherit;
   height: 100%;
   width: 100%;
@@ -182,10 +169,8 @@
   position: absolute;
   display: flex;
   align-self: flex-start;
-  top:0;
-  left:0;
-  margin-top: 1%;
-  margin-left: 90%;
+  top:1%;
+  left:92%;
 }
 
 .boardX :hover, .XButton :hover {

@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {updateTasks} from "../utils/updateTasks.js";
 import {onDrag} from "../utils/onDrag.js";
 import AddingList from "./presentational/addingList.js";
-import Header from './presentational/header.js';
 import List from './list.js';
 import {
   createNewList,
@@ -13,6 +12,7 @@ import {
   taskChecked,
   updateListsAndTasksDragEnd,
   deleteList,
+  changeListName,
 } from '../actions/boardActions'
 import '../assets/css/board.css';
 
@@ -36,8 +36,10 @@ function Board(props) {
 
   return (
     <div className='board'>
-      <Header/>
       <div className='boardName'>{props.board.name}</div>
+        <AddingList
+          createNewList={(input)=>props.createNewList(input, props.board.id)}
+        />
         <DragDropContext onDragEnd={onDragEnd}>
           <div className='all_lists_wrapper'>
             {
@@ -58,13 +60,11 @@ function Board(props) {
                     taskChecked={props.taskChecked}
                     deleteList={props.deleteList}
                     deleteTasks={deleteTasks}
+                    changeListName={(input) => props.changeListName(listID, input)}
                   />
                 )
               })
             }
-            <AddingList
-              createNewList={(input)=>props.createNewList(input, props.board.id)}
-            />
           </div>
         </DragDropContext>
       </div>
@@ -82,6 +82,7 @@ const mapDispatchToProps = dispatch => ({
   updateListsAndTasksDragEnd: (newLists, newTasks) => dispatch(updateListsAndTasksDragEnd(newLists, newTasks)),
   taskChecked: (id) => dispatch(taskChecked(id)),
   deleteList: (id, boardID) => dispatch(deleteList(id, boardID)),
+  changeListName: (listID, input) => dispatch(changeListName(listID, input)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

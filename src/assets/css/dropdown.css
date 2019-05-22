@@ -1,11 +1,13 @@
-.arrow_up {
+.gear_clicked, .gear_toClick {
   position: absolute;
   margin-left: 90%;
-  margin-top: -10%;
+  margin-top: -18%;
   z-index: 30;
+  width: 0.9em;
+  height: 0.9em;
 }
 
-.arrow_up:after {
+.gear_clicked:after {
   background: transparent;
   bottom: 0;
   content: " ";
@@ -18,42 +20,42 @@
   z-index: 20;
 }
 
-.arrow_down {
-  position: absolute;
-  margin-left: 90%;
-  margin-top: -10%;
-}
-
-.arrow_down :hover{
+.gear_toClick :hover{
   fill: lightblue;
+  cursor: pointer;
+  transform-origin: 50% 50%;
+  -moz-transform: rotate(15deg); /* Для Firefox */
+  -ms-transform: rotate(15deg); /* Для IE */
+  -webkit-transform: rotate(15deg); /* Для Safari, Chrome, iOS */
+  -o-transform: rotate(15deg); /* Для Opera */
+  transform: rotate(15deg);
+  transition: 0.1s;
 }
 
 .dropdown{
   position: absolute;
   font-size: 0.7em;
   margin-left: 10em;
-  width: 10em;
+  width: 11em;
   border: 1px solid black;
   border-radius: 6px;
   text-shadow: none;
   background-color: rgb(229, 229, 229);
   color: black;
   z-index: 30;
-  font-family: "Times";
-  font-weight: bold;
+  font-family: 'Heebo', sans-serif;
 }
 
-.dropdown_menu_item {
-  cursor: default;
+.dropdown_menu_item_upper, .dropdown_menu_item_lower {
+  cursor: pointer;
+  padding: 0.2em 0.3em;
+  display: flex;
+  align-content: flex-start;
 }
 
 .dropdown_menu_item_upper:hover {
   background-color: lightblue;
   border-radius: 6px 6px 0 0;
-}
-
-.dropdown_menu_item:hover {
-  background-color: lightblue;
 }
 
 .dropdown_menu_item_lower:hover {

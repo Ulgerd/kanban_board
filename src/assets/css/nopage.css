@@ -1,6 +1,7 @@
 .no_page {
   position: relative;
   display: inline-block;
+  font-family: 'Heebo', sans-serif;
   margin-top: 2em;
   width: 30%;
   line-height: 2.4em;

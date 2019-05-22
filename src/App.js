@@ -6,6 +6,7 @@ import TitlePage from './components/titlePage';
 import Board from './components/board';
 import NoPage from './components/nopage';
 import './assets/css/App.css';
+import Header from './components/presentational/header.js';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
+          <Header/>
           <Switch>
 
             <Route

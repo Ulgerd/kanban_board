@@ -9,26 +9,58 @@ import '../assets/css/list.css';
 export default function List(props) {
 
   const [addingTask, setAddingTask] = useState(false);
+  const [input, setInput] = useState(props.name);
+  const [changingListName, setChangingListName] = useState(false);
+
+  const onEnter = (e) => {
+    if (e.key === 'Enter' && input !== '') {
+      setChangingListName(false);
+      props.changeListName(input);
+    }
+  }
 
   return (
       <div className='list_wrapper'>
         <div className='list'>
-          <div className='list_header'>
-            {props.name}
+          <div
+            className='list_header no_select'
+            onDoubleClick={() => setChangingListName(true)}
+          >
+            {
+              changingListName ?
+              <div>
+                <input
+                  className='list_name_input'
+                  value={input}
+                  autoFocus
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyPress={onEnter}
+                />
+              </div> :
+              <div className='list_header_pointer'>{props.name}</div>
+            }
+
             <Dropdown
               deleteList = {() => props.deleteList(props.id, props.boardID)}
-              setAddingTask = {() => setAddingTask(true)}
               deleteTasks = {() => props.deleteTasks(props.id)}
             />
           </div>
-          <AddingTask
-            listID={props.id}
-            addingTask={addingTask}
-            setAddingTask={(e) => setAddingTask(e)}
-            onCreateNewChild={props.onCreateNewChild}
-          />
+          {addingTask ?
+            <AddingTask
+              listID={props.id}
+              addingTask={addingTask}
+              setAddingTask={(e) => setAddingTask(e)}
+              onCreateNewChild={props.onCreateNewChild}
+            /> :
+            <button
+              className='newTaskButton'
+              onClick={() => setAddingTask(true)}
+            >New Task
+            </button>
+          }
         </div>
         <div>
+
           <Droppable droppableId={props.id} type="TASK">
             {
               (provided, snapshot) => (
@@ -37,8 +69,9 @@ export default function List(props) {
                   ref={provided.innerRef} {...provided.droppableProps}
                 >
                   {props.tasks.map((task, index) => (
-
-                    <div key={task.id}>
+                    <div
+                      key={task.id}
+                    >
                       <Task
                         onClick={() => props.taskChecked(task.id)}
                         task={task}

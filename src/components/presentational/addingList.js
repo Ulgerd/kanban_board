@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Icon from './icon.js';
 import '../.././assets/css/addingList.css';
 
 export default function AddingList(props) {
@@ -30,6 +31,7 @@ export default function AddingList(props) {
           className='create_a_list'>
             <input
               className='create_list_input'
+              autoFocus
               type='text'
               name='addAList'
               onChange={(e) => setInput(e.target.value)}
@@ -38,12 +40,14 @@ export default function AddingList(props) {
               placeholder="List name, a.g. 'To Do'"
               maxLength="15"
             />
-            <button
-              className='cancel_list_button no_select'
-              onClick={onCancel}
-            >
-              Cancel
-            </button>
+            <Icon
+              name='boardX'
+              onClick = {onCancel}
+              fill='rgb(239, 239, 239)'
+              width='1em'
+              height='1em'
+              xlink='close'
+            />
             <button
               className='create_list_button no_select'
               onClick={onCreateNewList}

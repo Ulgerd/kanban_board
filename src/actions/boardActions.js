@@ -5,6 +5,7 @@ import {
   TASK_CHECKED,
   UPDATE_LISTS_AND_TASKS,
   DELETE_LIST,
+  CHANGE_LIST_NAME
  } from './actionTypes';
 
 export function createNewList(input, boardID) {
@@ -12,6 +13,14 @@ export function createNewList(input, boardID) {
     type: CREATE_NEW_LIST,
     input,
     boardID
+  }
+}
+
+export function changeListName(listID, input) {
+  return {
+    type: CHANGE_LIST_NAME,
+    listID,
+    input
   }
 }
 

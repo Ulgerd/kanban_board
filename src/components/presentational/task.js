@@ -11,13 +11,21 @@ export default function Task(props) {
       >
         {(provided, snapshot) => (
           <div
-            className = {props.task.checked ? 'task _checked':'task'}
+            className='task_content'
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            onClick={props.onClick}
           >
-            {props.task.content}
+            <div
+              className = {props.task.checked ? 'task _checked':'task'}
+              onClick={props.onClick}
+            >
+              {props.task.content}
+            </div>
+            <div
+              className='task_menu'
+
+            >···</div>
           </div>
         )}
       </Draggable>

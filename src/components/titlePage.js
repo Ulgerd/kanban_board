@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
 import {confirmAlert} from 'react-confirm-alert';
-import Header from './presentational/header.js';
 import CreatingNewBoard from './presentational/creatingNewBoard.js';
 import Icon from './presentational/icon.js';
 import '../assets/css/confirm.css';
@@ -37,7 +36,11 @@ export default function TitlePage(props) {
   });
 
   return (<div className='main_wrapper'>
-    <Header/>
+
+    <div className='title'>
+      <h1>Hi! I am friendly kanban!</h1>
+      <h3>Try me! Click the button below!</h3>
+    </div>
     <div className='create_new_board_wrapper'>
       {
         menuOpen
@@ -68,9 +71,9 @@ export default function TitlePage(props) {
           <Icon
             name='boardX'
             onClick = {(e) => {e.preventDefault(); submit(props.boards[key].id)}}
-            fill='rgb(50, 50, 50)'
-            width='1em'
-            height="1em"
+            fill='white'
+            width='0.8em'
+            height='0.8em'
             xlink='close'
           />
           {props.boards[key].name}

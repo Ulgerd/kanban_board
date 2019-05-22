@@ -18,8 +18,9 @@ export default function AddingTask(props) {
   }
 
   return (<div>
-    {props.addingTask ? <div>
+    {props.addingTask ? <div className='create_task_wrapper'>
       <input
+        autoFocus
         onChange={(e) => {setInput(e.target.value)}}
         value={input}
         onKeyPress={onEnter}

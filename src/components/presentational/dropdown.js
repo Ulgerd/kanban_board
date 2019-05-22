@@ -34,20 +34,20 @@ export default function Dropdown(props) {
     <div>
     {dropdown ?
       <Icon
-        name = 'arrow_up'
+        name = 'gear_clicked'
         onClick = {() => setDropdown(false)}
         fill='lightblue'
-        width='1em'
-        height="1em"
-        xlink = 'arrow_up'
+        width='0.9em'
+        height="0.9em"
+        xlink = 'gear'
       /> :
       <Icon
-        name = 'arrow_down'
+        name = 'gear_toClick'
         onClick = {() => setDropdown(true)}
-        fill='black'
-        width='1em'
-        height="1em"
-        xlink = 'arrow_down'
+        fill='rgb(239, 239, 239)'
+        width='0.9em'
+        height="0.9em"
+        xlink = 'gear'
       />
     }
     {
@@ -55,12 +55,6 @@ export default function Dropdown(props) {
       <div className='dropdown'>
         <div
           className='dropdown_menu_item_upper no_select'
-          onClick={() => {setDropdown(false); props.setAddingTask()}}
-        >
-          Add new task
-        </div>
-        <div
-          className='dropdown_menu_item no_select'
           onClick={submit}
         >
           Delete this list

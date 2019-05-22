@@ -1,38 +1,35 @@
 .create_a_list {
+  margin: 2em auto;
   justify-self: center;
+  position: relative;
   border-radius: 15px;
   background-color: lightgray;
   border: 1px solid black;
   color: gray;
-  max-width: 14em;
-  min-width: 12em;
+  width: 14em;
   height: 8em;
   box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
+  font-family: 'Heebo', sans-serif;
 }
 
 .add_a_list {
   border-radius: 15px;
   border: 1px solid black;
-  background-color: rgb(193, 191, 188);
+  background-color: rgb(150, 142, 141);
   color: white;
-  min-width: 10em;
+  width: 10em;
   height: 4em;
+  margin: 2em auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.2), 5px 5px 5px 0 rgba(0,0,0,0.2);
-  color: rgba(0,0,0,0.6);
-  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
-               0px -5px 35px rgba(255,255,255,0.3);
   transition: 0.4s;
-  font-family: "Times";
-  font-weight: bold;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1em;
 }
 
 .add_a_list:hover {
   color: rgba(0,0,0,0.6);
-	text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
-               0px -5px 35px rgba(255,255,255,0.3);
   transform: scale(1.04, 1.04);
 }
 
@@ -43,27 +40,29 @@
 .create_list_input {
   width: 80%;
   height: 2rem;
-  margin: 1em auto 0;
+  margin: 1.5em auto 0;
   border: 2px solid gray;
   border-radius: 6px;
+  padding-left: 0.3em;
   font-size: 1rem;
   box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
   outline: none;
-  font-family: "Times";
+  cursor: pointer;
+  font-family: 'Heebo', sans-serif;
 }
 
 .create_list_button {
-  width: 40%;
+  width: 80%;
   height: 25%;
   margin-top: 1em;
   border-radius: 9px;
   font-size: 1em;
   outline: none;
+  cursor: pointer;
   color: white;
   background-color: rgb(156, 149, 145);
   box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
-  font-family: "Times";
-  font-weight: bold;
+  font-family: 'Heebo', sans-serif;
 }
 
 .create_list_button:active {
@@ -76,28 +75,6 @@
   box-shadow: none;
 }
 
-.cancel_list_button {
-  width: 40%;
-  height: 24%;
-  margin-top: 1em;
-  margin-right: 0.2em;
-  border: none;
-  font-size: 1em;
-  color: rgb(25, 25, 25);
-  background-color: rgb(210, 210, 210);
-  outline: none;
-  font-family: "Times";
-  font-weight: bold;
-}
-
-.cancel_list_button:hover {
-    background-color: rgb(178, 67, 44);
-    box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
-    border-radius: 9px;
-}
-
-.cancel_list_button:active {
-    background-color: rgb(178, 67, 44);
-    border-radius: 9px;
-    box-shadow: none;
+.X_list_button {
+  position: absolute;
 }
