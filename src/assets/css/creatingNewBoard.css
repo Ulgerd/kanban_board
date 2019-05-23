@@ -103,6 +103,10 @@
   border-radius: 6px;
 }
 
+.react-select__option {
+  display: flex !important;
+}
+
 .createButton {
   background-color: rgb(220, 220, 220);
   border: none;

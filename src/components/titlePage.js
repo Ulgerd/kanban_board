@@ -32,14 +32,14 @@ export default function TitlePage(props) {
   }
 
   useEffect(() => {
-    document.title = `Title page`;
+    document.title = `Kanban board`;
   });
 
   return (<div className='main_wrapper'>
 
     <div className='title'>
-      <h1>Hi! I am friendly kanban!</h1>
-      <h3>Try me! Click the button below!</h3>
+      <h1>Hi, I am a friendly kanban!</h1>
+      <h3>Try me, click the button below!</h3>
     </div>
     <div className='create_new_board_wrapper'>
       {
