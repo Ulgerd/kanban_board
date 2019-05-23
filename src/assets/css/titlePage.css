@@ -157,8 +157,8 @@
   position: absolute;
   display: flex;
   align-self: flex-start;
-  top:3%;
-  left:93%;
+  top:1%;
+  left:92.5%;
 }
 
 .boardX :hover, .XButton :hover {
