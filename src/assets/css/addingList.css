@@ -1,40 +1,51 @@
 .create_a_list {
-  margin: 2em auto;
-  justify-self: center;
+  font-family: 'Heebo', sans-serif;
+  background: linear-gradient(#d2dfea, #71828c);
   position: relative;
-  border-radius: 15px;
-  background-color: lightgray;
-  border: 1px solid black;
-  color: gray;
+  display: inline-block;
   width: 14em;
   height: 8em;
-  box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
-  font-family: 'Heebo', sans-serif;
+  outline: none;
+  border: 1px solid rgba(110,121,128,.8);
+  margin: 0.5em auto 2em;
+  border-top-color: rgba(0,0,0,.3);
+  border-radius: 5px;
+  background: rgb(192, 190, 186) linear-gradient(rgb(192, 190, 186), rgb(120, 112, 110));
+  box-shadow:
+   0 -1px rgba(10,21,28,.9) inset,
+   0 1px rgba(255,255,255,.5) inset;
+  color: rgb(255, 255, 255);
 }
+
 
 .add_a_list {
-  border-radius: 15px;
-  border: 1px solid black;
-  background-color: rgb(150, 142, 141);
-  color: white;
-  width: 10em;
-  height: 4em;
-  margin: 2em auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.4s;
   font-family: 'Heebo', sans-serif;
-  font-size: 1em;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.3rem;
+  height: 3em;
+  width: 10em;
+  padding: 0.8em 0;
+  margin: 0.5em auto 2em;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  color: rgb(235, 235, 235);
+  outline: none;
+  border: 1px solid rgba(110,121,128,.8);
+  border-top-color: rgba(0,0,0,.3);
+  border-radius: 5px;
+  background: rgb(192, 190, 186) linear-gradient(rgb(192, 190, 186), rgb(120, 112, 110));
 }
-
 .add_a_list:hover {
-  color: white;
-  transform: scale(1.04, 1.04);
+  background: linear-gradient(rgb(216, 215, 213), rgb(150, 142, 140));
 }
 
 .add_a_list:active {
-  box-shadow: none;
+  background: linear-gradient(rgb(192, 190, 186), rgb(120, 112, 110));
+  box-shadow: 0 -1px rgba(255,255,255,.4) inset;
 }
 
 .create_list_input {
@@ -44,6 +55,7 @@
   border: 2px solid gray;
   border-radius: 6px;
   padding-left: 0.3em;
+  background-color: rgb(219, 219, 219);
   font-size: 1rem;
   box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
   outline: none;
@@ -59,8 +71,8 @@
   font-size: 1em;
   outline: none;
   cursor: pointer;
-  color: white;
-  background-color: rgb(156, 149, 145);
+  color: rgb(53, 53, 53);
+  background-color: rgb(219, 219, 219);
   box-shadow: 5px 0px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.2);
   font-family: 'Heebo', sans-serif;
 }
@@ -71,7 +83,7 @@
 }
 
 .create_list_button:disabled {
-  color: gray;
+  color: rgb(199, 198, 199);
   box-shadow: none;
 }
 

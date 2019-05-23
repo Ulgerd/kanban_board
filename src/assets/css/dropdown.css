@@ -1,15 +1,22 @@
+.dropdown_wrapper {
+  position: absolute;
+}
+
 .dropdown{
   position: absolute;
-  font-size: 0.7em;
-  margin-top: 2.5em;
-  margin-left: -2em;
+  font-size: 0.9em;
+  margin-top: 1.5em;
+  margin-left: 3em;
   width: 11em;
-  border: 1px solid black;
+  border-radius: 6px;
+  z-index: 32;
+}
+
+.dropdown_menu {
+  background-color: rgb(120, 112, 110);
   border-radius: 6px;
   text-shadow: none;
-  background-color: rgb(229, 229, 229);
-  color: black;
-  z-index: 31;
+  color: rgb(229, 229, 229);
   font-family: 'Heebo', sans-serif;
 }
 

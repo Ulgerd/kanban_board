@@ -60,7 +60,7 @@ export default function AddingList(props) {
             onClick={() => {setAddList(!addList)}}
             className='add_a_list no_select'
           >
-            Add a list...
+            Create new list
           </div>
     }
   </div>)

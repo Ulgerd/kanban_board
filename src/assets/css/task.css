@@ -19,6 +19,7 @@
   height: 100%;
   padding: 0.15em 0;
   border-right: 1px solid black;
+  cursor: pointer;
 }
 
 .task_name_input {

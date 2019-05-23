@@ -10,7 +10,13 @@ export default function Task(props) {
   const [editTask, setEditTask] = useState(false);
 
   const onEnter = (e) => {
-    if (e.key === 'Enter' && taskInput !== '') {
+    if (e.key === 'Enter') {
+      onBlur();
+    }
+  }
+
+  const onBlur = () => {
+    if (taskInput !== '') {
       setEditTask(false);
       props.editTask(props.taskID,taskInput);
     }
@@ -35,8 +41,15 @@ export default function Task(props) {
                   autoFocus
                   onChange={(e) => setTaskInput(e.target.value)}
                   onKeyPress={onEnter}
+                  onBlur={onBlur}
                 />
-              :  <div className='task'>{taskInput}</div>}
+              :  <div
+                  className='task'
+                  onDoubleClick = {() => {setEditTask(true)}}
+                >
+                  {taskInput}
+                  </div>
+                }
             {
               taskMenu ?
               <Dropdown
