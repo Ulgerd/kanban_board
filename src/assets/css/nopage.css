@@ -3,18 +3,10 @@
   display: inline-block;
   font-family: 'Heebo', sans-serif;
   margin-top: 2em;
-  width: 30%;
-  line-height: 2.4em;
-  vertical-align: middle;
-  text-align: center;
-  text-decoration: none;
   user-select: none;
-  color: #000;
-  outline: none;
-  border-top-color: rgba(0,0,0,.3);
-  border-radius: 5px;
-  top: -10px; right: -10px; bottom: -10px; left: -10px;
-  z-index: -1;
-  border-radius: 8px;
-  background: linear-gradient(rgba(200,200,200,0.7), rgba(240,240,240,0.7));
+  color: rgb(89, 88, 89);
+  color: rgba(0,0,0,0.6);
+  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+               0px -5px 35px rgba(255,255,255,0.3);
+  font-family: 'Heebo', sans-serif;
 }

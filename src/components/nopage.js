@@ -7,8 +7,8 @@ export default function NoPage() {
     <div >
       <Header />
       <div className='no_page'>
-        <div>Sorry, this page doesn't exist</div>
-        <div>Click the house button icon to return to the front page</div>
+        <h1>Sorry, this page doesn't exist</h1>
+        <p>Click the house button icon to return to the front page</p>
       </div>
     </div>
   )
