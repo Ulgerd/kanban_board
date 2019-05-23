@@ -41,7 +41,7 @@ export default function AddingList(props) {
               maxLength="15"
             />
             <Icon
-              name='boardX'
+              name='X_list_button'
               onClick = {onCancel}
               fill='rgb(239, 239, 239)'
               width='1em'

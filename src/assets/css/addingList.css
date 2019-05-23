@@ -33,6 +33,7 @@
   text-decoration: none;
   user-select: none;
   color: white;
+  transition: 0.4s;
   outline: none;
   border: 1px solid rgba(110,121,128,.8);
   border-top-color: rgba(0,0,0,.3);
@@ -40,7 +41,7 @@
   background: rgb(192, 190, 186) linear-gradient(rgb(192, 190, 186), rgb(120, 112, 110));
 }
 .add_a_list:hover {
-  background: linear-gradient(rgb(216, 215, 213), rgb(150, 142, 140));
+  transform: scale(1.05, 1.05);
 }
 
 .add_a_list:active {
@@ -88,5 +89,18 @@
 }
 
 .X_list_button {
+  filter: drop-shadow(1px 3px 5px rgb(70, 70, 70));
   position: absolute;
+  display: flex;
+  align-self: flex-start;
+  top:1%;
+  left:92%;
+}
+
+.X_list_button :hover {
+  fill: rgb(111, 200, 219);
+}
+
+.X_list_button:hover {
+  filter: none;
 }

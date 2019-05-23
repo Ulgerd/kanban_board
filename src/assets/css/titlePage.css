@@ -12,7 +12,7 @@
   font-size: 1.3rem;
   height: 3em;
   width: 10em;
-  transition: 1s;
+  transition: 0.4s;
   padding: 0.8em 0;
   vertical-align: middle;
   text-align: center;
@@ -26,7 +26,7 @@
   background: rgb(192, 190, 186) linear-gradient(rgb(192, 190, 186), rgb(120, 112, 110));
 }
 .createNewBoard:hover {
-  background: linear-gradient(rgb(216, 215, 213), rgb(150, 142, 140));
+  transform: scale(1.05, 1.05);
 }
 
 .createNewBoard:active {
@@ -157,8 +157,8 @@
   position: absolute;
   display: flex;
   align-self: flex-start;
-  top:1%;
-  left:92%;
+  top:3%;
+  left:93%;
 }
 
 .boardX :hover, .XButton :hover {
