@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "immer": "^3.1.1",
-    "nanoid": "^2.0.1",
+    "nanoid": "^3.1.31",
     "react": "^16.8.6",
     "react-beautiful-dnd": "^11.0.1",
     "react-confirm-alert": "^2.4.1",
